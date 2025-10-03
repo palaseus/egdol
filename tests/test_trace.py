@@ -1,10 +1,10 @@
-import unittest
-import logging
 import io
+import logging
+import unittest
 
-from egdol.rules_engine import RulesEngine
 from egdol.interpreter import Interpreter
-from egdol.parser import Term, Constant
+from egdol.parser import Constant, Term
+from egdol.rules_engine import RulesEngine
 
 
 class TraceTests(unittest.TestCase):

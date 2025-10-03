@@ -1,7 +1,7 @@
+import json
 import subprocess
 import sys
-import json
-import os
+
 
 def run(cmd):
     p = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

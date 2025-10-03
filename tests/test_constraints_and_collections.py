@@ -1,7 +1,7 @@
-from egdol.rules_engine import RulesEngine
 from egdol.interpreter import Interpreter
 from egdol.lexer import Lexer
 from egdol.parser import Parser
+from egdol.rules_engine import RulesEngine
 
 
 def test_dif_rejects_early():

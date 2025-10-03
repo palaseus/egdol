@@ -1,4 +1,5 @@
 import unittest
+
 from egdol.rules_engine import RulesEngine
 
 try:

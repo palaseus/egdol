@@ -3,9 +3,10 @@
 Uses a RulesEngine instance (which stores facts and rules). The interpreter
 performs depth-first proof search to satisfy queries using facts and rules.
 """
-from typing import Dict, List, Generator
-from .parser import Term, Variable, Constant, Rule
 import logging
+from typing import Dict, Generator, List
+
+from .parser import Constant, Rule, Term, Variable
 
 
 class MaxDepthExceededError(Exception):

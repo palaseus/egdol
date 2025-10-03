@@ -1,7 +1,8 @@
-import unittest
 import os
+import unittest
+
 from egdol.rules_engine import RulesEngine
-from egdol.parser import Term, Constant
+
 
 class EngineFeatureTests(unittest.TestCase):
     def test_macro_and_export_json_and_check(self):

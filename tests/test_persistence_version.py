@@ -1,10 +1,9 @@
-import unittest
-import tempfile
-import os
 import json
+import os
+import tempfile
+import unittest
 
 from egdol.rules_engine import RulesEngine
-from egdol.parser import Term, Constant
 
 
 class PersistenceVersionTests(unittest.TestCase):

@@ -1,13 +1,13 @@
 """CLI entrypoint and session runner for egdol"""
-from .lexer import Lexer
-from .parser import Parser, Fact, Rule, Query
-from .rules_engine import RulesEngine
-from .interpreter import Interpreter
-from .interpreter import MaxDepthExceededError
-from typing import List, Tuple
-import os
-import logging
 import argparse
+import logging
+import os
+from typing import List
+
+from .interpreter import Interpreter, MaxDepthExceededError
+from .lexer import Lexer
+from .parser import Fact, Parser, Query, Rule
+from .rules_engine import RulesEngine
 
 logging.basicConfig(level=logging.WARNING, format='[%(levelname)s] %(message)s')
 

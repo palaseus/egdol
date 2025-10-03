@@ -1,6 +1,6 @@
 import io
-from contextlib import redirect_stdout
-from egdol.main import run_session, repl
+
+from egdol.main import run_session
 from egdol.rules_engine import RulesEngine
 
 

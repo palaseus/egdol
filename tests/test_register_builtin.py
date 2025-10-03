@@ -1,8 +1,8 @@
 import unittest
 
 from egdol.interpreter import Interpreter
+from egdol.parser import Term
 from egdol.rules_engine import RulesEngine
-from egdol.parser import Term, Constant
 
 
 class RegisterBuiltinTests(unittest.TestCase):

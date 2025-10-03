@@ -1,5 +1,3 @@
-import tempfile
-import os
 
 from egdol.rules_engine import RulesEngine
 

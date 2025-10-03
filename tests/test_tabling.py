@@ -1,7 +1,8 @@
 import unittest
-from egdol.rules_engine import RulesEngine
+
 from egdol.interpreter import Interpreter
-from egdol.parser import Term, Variable, Constant, Rule
+from egdol.parser import Constant, Rule, Term, Variable
+from egdol.rules_engine import RulesEngine
 
 
 class TablingTests(unittest.TestCase):

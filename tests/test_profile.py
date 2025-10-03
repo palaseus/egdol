@@ -1,8 +1,8 @@
-import os
 import json
+
+from egdol.interpreter import Interpreter
 from egdol.main import run_session
 from egdol.rules_engine import RulesEngine
-from egdol.interpreter import Interpreter
 
 
 def test_rule_profiling_and_profile_reset_and_log(tmp_path):

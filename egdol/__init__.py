@@ -1,5 +1,5 @@
 """egdol package initializer"""
 
-from .lexer import Token, Lexer, LexerError
+from .lexer import Lexer, LexerError, Token
 
 __all__ = ["Token", "Lexer", "LexerError"]

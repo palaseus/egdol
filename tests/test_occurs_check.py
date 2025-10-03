@@ -1,8 +1,8 @@
 import unittest
 
-from egdol.rules_engine import RulesEngine
 from egdol.interpreter import Interpreter, UnificationError
-from egdol.parser import Term, Variable, Constant, Rule
+from egdol.parser import Constant, Term, Variable
+from egdol.rules_engine import RulesEngine
 
 
 class OccursCheckTests(unittest.TestCase):

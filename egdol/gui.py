@@ -1,10 +1,11 @@
 """Simple tkinter GUI for egdol: treeview for facts/rules, query entry, results table, trace/log pane, stats panel."""
+import threading
 import tkinter as tk
 from tkinter import ttk
-from .rules_engine import RulesEngine
+
 from .interpreter import Interpreter
-from .parser import Term
-import threading
+from .rules_engine import RulesEngine
+
 
 class EgdolGUI:
     def __init__(self, engine: RulesEngine):

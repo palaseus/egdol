@@ -1,8 +1,10 @@
 import unittest
-from egdol.lexer import Lexer
-from egdol.parser import Parser, Variable, Constant, Term
-from egdol.rules_engine import RulesEngine
+
 from egdol.interpreter import Interpreter
+from egdol.lexer import Lexer
+from egdol.parser import Constant, Parser, Term, Variable
+from egdol.rules_engine import RulesEngine
+
 
 class FDTests(unittest.TestCase):
     def test_parse_in_range(self):

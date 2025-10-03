@@ -1,7 +1,7 @@
 import unittest
 
 from egdol.lexer import Lexer
-from egdol.parser import Parser, Fact, Rule, Query, Term, Variable, Constant, ParseError
+from egdol.parser import Fact, ParseError, Parser, Query, Rule
 
 
 class ParserTests(unittest.TestCase):
@@ -54,7 +54,6 @@ class ParserTests(unittest.TestCase):
 
     def test_macro_ast_multi_statement_and_hygienic(self):
         from egdol.rules_engine import RulesEngine
-        from egdol.parser import Term, Variable, Constant
         eng = RulesEngine()
         # macro with two statements: a fact and a rule using X
         eng.add_macro('m', ['X'], 'fact: p(X). rule: q(X) => p(X).')

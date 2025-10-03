@@ -1,6 +1,6 @@
 import unittest
 
-from egdol.lexer import Lexer, Token, LexerError
+from egdol.lexer import Lexer, LexerError
 
 
 class LexerTests(unittest.TestCase):

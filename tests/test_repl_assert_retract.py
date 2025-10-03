@@ -1,8 +1,6 @@
 import unittest
-import tempfile
-import os
 
-from egdol.main import run_session, load_file
+from egdol.main import run_session
 from egdol.rules_engine import RulesEngine
 
 

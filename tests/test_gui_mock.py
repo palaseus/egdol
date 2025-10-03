@@ -1,6 +1,7 @@
 import unittest
 from unittest import mock
 
+
 # Mock tkinter elements used by egdol.gui
 class FakeTk:
     def __init__(self):
@@ -84,13 +85,13 @@ class GuiMockTests(unittest.TestCase):
         fake_ttk.Treeview = FakeTreeview
         fake_tk_mod.ttk = fake_ttk
         fake_tk_mod.Text = FakeText
-        fake_tk_mod.IntVar = lambda: type('V', (), {'_v': 999, 'set': lambda self, v: setattr(self, '_v', v), 'get': lambda self: getattr(self, '_v')})()
+        fake_tk_mod.IntVar = lambda: type('V', (), {'_v': 999, 'set': lambda self, v: setattr(self, '_v', v), 'get': lambda self: self._v})()
         sys.modules['tkinter'] = fake_tk_mod
         sys.modules['tkinter.ttk'] = fake_ttk
         # import gui after injecting mocks
         from egdol.gui import EgdolGUI
-        from egdol.rules_engine import RulesEngine
         from egdol.interpreter import Interpreter
+        from egdol.rules_engine import RulesEngine
         eng = RulesEngine()
         interp = Interpreter(eng)
         gui = EgdolGUI(eng)

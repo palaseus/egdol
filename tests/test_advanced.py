@@ -1,9 +1,9 @@
-import unittest
-import tempfile
 import os
+import tempfile
+import unittest
 
+from egdol.parser import Constant, Rule, Term, Variable
 from egdol.rules_engine import RulesEngine
-from egdol.parser import Term, Variable, Constant, Rule
 
 
 class AdvancedTests(unittest.TestCase):

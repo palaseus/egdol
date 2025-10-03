@@ -1,6 +1,8 @@
 import unittest
+
+from egdol.parser import Constant, Term
 from egdol.rules_engine import RulesEngine
-from egdol.parser import Term, Constant
+
 
 class IndexingTests(unittest.TestCase):
     def test_set_trie_index_mode(self):

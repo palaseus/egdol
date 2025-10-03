@@ -1,8 +1,8 @@
-import unittest
-import tempfile
 import os
+import tempfile
+import unittest
 
-from egdol.main import run_session, load_file
+from egdol.main import load_file, run_session
 
 
 class ReplTests(unittest.TestCase):
@@ -22,8 +22,9 @@ class ReplTests(unittest.TestCase):
 
     def test_log_perf_writes_file(self):
         import tempfile
-        from egdol.rules_engine import RulesEngine
+
         from egdol.interpreter import Interpreter
+        from egdol.rules_engine import RulesEngine
         eng = RulesEngine()
         interp = Interpreter(eng)
         eng._last_query_stats = {'unify_count': 1, 'prove_count': 2}
@@ -50,8 +51,8 @@ if __name__ == '__main__':
 
 class UndoBehaviorTests(unittest.TestCase):
     def test_undo_dif_freeze_fd_macro(self):
+        from egdol.parser import Constant, Term, Variable
         from egdol.rules_engine import RulesEngine
-        from egdol.parser import Term, Variable, Constant
 
         eng = RulesEngine()
         # add dif
@@ -88,8 +89,8 @@ class UndoBehaviorTests(unittest.TestCase):
         self.assertEqual(len(eng._dif_constraints), 0)
 
     def test_list_constraints_output(self):
+        from egdol.parser import Constant, Term, Variable
         from egdol.rules_engine import RulesEngine
-        from egdol.parser import Term, Variable, Constant
         eng = RulesEngine()
         eng.add_dif_constraint(Variable('X'), Constant(1))
         eng.add_freeze('Y', Term('p', [Variable('Y')]))

@@ -1,10 +1,10 @@
-import unittest
-import tempfile
 import os
+import tempfile
+import unittest
 
-from egdol.rules_engine import RulesEngine
-from egdol.main import run_session
 from egdol.interpreter import Interpreter
+from egdol.main import run_session
+from egdol.rules_engine import RulesEngine
 
 
 class PersistenceTests(unittest.TestCase):

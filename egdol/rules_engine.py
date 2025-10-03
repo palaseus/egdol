@@ -3,9 +3,10 @@
 This module provides a minimal unifier to match query terms against stored facts.
 Returns a list of bindings (dict from variable name to matched Term/Constant).
 """
-from typing import List, Dict, Optional
-from .parser import Term, Variable, Constant, Rule, ParseError, Fact, Query, Parser
+from typing import Dict, List, Optional
+
 from .lexer import Lexer
+from .parser import Constant, Fact, ParseError, Parser, Query, Rule, Term, Variable
 
 
 class RulesEngine:
@@ -827,7 +828,9 @@ class RulesEngine:
                 a2 = a
                 b2 = b
                 # apply simple substitution using names in subst where available
-                from .parser import Variable as PVar, Constant as PConst, Term as PTerm
+                from .parser import Constant as PConst
+                from .parser import Term as PTerm
+                from .parser import Variable as PVar
                 def apply_simple(x):
                     if isinstance(x, PVar) and x.name in subst:
                         return subst[x.name]

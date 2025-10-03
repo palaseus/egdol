@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/lexer.py
+# hypothesis_version: 6.139.2
+
+['!', '"([^"\\\\]|\\\\.)*"', '(?m)(#|%).*$', ',', '-', '.', '/', ':', ';', '<', '<=', '=', '=>', '>', '>=', 'ARROW', 'BAR', 'COLON', 'COMMA', 'CUT', 'DOT', 'EQ', 'GE', 'GT', 'IDENT', 'LBRACE', 'LBRACK', 'LE', 'LPAREN', 'LT', 'MINUS', 'MISMATCH', 'NEQ', 'NEWLINE', 'NUMBER', 'PLUS', 'QUERY', 'RANGE', 'RBRACE', 'RBRACK', 'RPAREN', 'SEMI', 'SKIP', 'SLASH', 'STAR', 'STRING', 'VAR', '[ \\t]+', '[A-Z][a-zA-Z0-9_]*', '[a-z_][a-zA-Z0-9_]*', '\\(', '\\)', '\\*', '\\+', '\\.', '\\.\\.', '\\?', '\\[', '\\\\==', '\\]', '\\d+', '\\n', '\\{', '\\|', '\\}', '__main__', '|']

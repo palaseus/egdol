@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/parser.py
+# hypothesis_version: 6.139.2
+
+['!', '+', '-', '.', ';', '<', '<=', '=', '>', '>=', 'ARROW', 'BAR', 'COLON', 'COMMA', 'CUT', 'Constant', 'DOT', 'EQ', 'GE', 'GT', 'IDENT', 'LBRACE', 'LBRACK', 'LE', 'LPAREN', 'LT', 'MINUS', 'NEQ', 'NUMBER', 'PLUS', 'QUERY', 'RANGE', 'RBRACE', 'RBRACK', 'RPAREN', 'SEMI', 'STRING', 'Term', 'VAR', 'Variable', '[]', 'dif', 'fact', 'in', 'in_range', 'in_set', 'line', 'module', 'rule', 'unicode_escape', 'utf-8']

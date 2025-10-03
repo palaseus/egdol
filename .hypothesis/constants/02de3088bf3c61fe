@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/rules_engine.py
+# hypothesis_version: 6.139.2
+
+['\n// FD constraints\n', ' | ', '#<', '#=', '#>', '%.*$', '+', ',', ', ', '-', '.', '..', ':', ':-', ';', '; ', '<inline>', 'No constraints.', 'RulesEngine', 'Unknown index mode', 'Unknown term format', '[', '[]', '\\==', ']', '__BAR__', '__RANGE__', '__iter__', '_dif_constraints', '_fd_constraints', '_fd_domains', '_freeze_store', '_id', '_macro_counter', '_macros', '_settings', '_vals', 'a', 'args', 'body', 'const', 'dif', 'digraph egdol {\n', 'expr', 'fact:', 'fact_index_size', 'facts', 'fd', 'freeze', 'hash', 'head', 'id', 'index_mode', 'macro', 'macros', 'name', 'num_facts', 'num_rules', 'op', 'r', 'rule:', 'rule_index_size', 'rules', 'settings', 'term', 'trie', 'utf-8', 'var', 'version', 'w', '|', '}\n']

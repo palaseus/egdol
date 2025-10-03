@@ -8,7 +8,7 @@ import sys
 import os
 import time
 from typing import Dict, Any, Optional
-from .core import OmniMind
+from egdol.omnimind.core import OmniMind
 
 
 class Colors:

@@ -339,7 +339,16 @@ class AdvancedProfiler:
             },
             "rule_profiles": {name: asdict(profile) for name, profile in self.rule_profiles.items()},
             "query_profiles": {qid: asdict(profile) for qid, profile in self.query_profiles.items()},
-            "performance_metrics": asdict(self.performance_metrics),
+            "performance_metrics": {
+                "total_execution_time": self.performance_metrics.total_execution_time,
+                "query_count": self.performance_metrics.query_count,
+                "rule_execution_count": self.performance_metrics.rule_execution_count,
+                "avg_unify_time": self.performance_metrics.avg_unify_time,
+                "total_unify_time": self.performance_metrics.total_unify_time,
+                "unify_count": self.performance_metrics.unify_count,
+                "avg_rule_time": self.performance_metrics.avg_rule_time,
+                "total_rule_time": self.performance_metrics.total_rule_time
+            },
             "call_graph": {
                 "nodes": list(self.call_graph.nodes()),
                 "edges": list(self.call_graph.edges())

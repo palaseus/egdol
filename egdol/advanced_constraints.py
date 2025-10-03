@@ -45,7 +45,7 @@ class ConstraintPropagator:
         queue = deque()
         
         # Initialize queue with all arcs
-        for var1, var2, op in self.constraints:
+        for var1, op, var2 in self.constraints:
             queue.append((var1, var2, op))
             queue.append((var2, var1, self._reverse_op(op)))
             
@@ -149,7 +149,7 @@ class ConstraintPropagator:
             
     def _is_consistent(self, assignment: Dict[str, Any]) -> bool:
         """Check if current assignment is consistent."""
-        for var1, var2, op in self.constraints:
+        for var1, op, var2 in self.constraints:
             if var1 in assignment and var2 in assignment:
                 if not self._satisfies_constraint(assignment[var1], assignment[var2], op):
                     return False
@@ -157,7 +157,7 @@ class ConstraintPropagator:
         
     def _forward_check(self, assignment: Dict[str, Any]) -> bool:
         """Forward checking to reduce domains of unassigned variables."""
-        for var1, var2, op in self.constraints:
+        for var1, op, var2 in self.constraints:
             if var1 in assignment and var2 not in assignment:
                 # Remove values from var2's domain that don't support var1's value
                 domain2 = self.domains[var2].copy()

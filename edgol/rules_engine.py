@@ -1,3 +1,6 @@
+from egdol.rules_engine import *
+
+__all__ = getattr(__import__('egdol.rules_engine', fromlist=['*']), '__all__', [n for n in dir() if not n.startswith('_')])
 """Core logic for storing facts and rules and simple unification queries.
 
 This module provides a minimal unifier to match query terms against stored facts.

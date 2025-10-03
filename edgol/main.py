@@ -1,3 +1,6 @@
+from egdol.main import *
+
+__all__ = getattr(__import__('egdol.main', fromlist=['*']), '__all__', [n for n in dir() if not n.startswith('_')])
 """CLI entrypoint and session runner for egdol"""
 from .lexer import Lexer
 from .parser import Parser, Fact, Rule, Query

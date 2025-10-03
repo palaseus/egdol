@@ -1,3 +1,6 @@
+from egdol.parser import *
+
+__all__ = getattr(__import__('egdol.parser', fromlist=['*']), '__all__', [n for n in dir() if not n.startswith('_')])
 
 """Parser for egdol mini-DSL.
 

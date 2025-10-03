@@ -1,3 +1,6 @@
+from egdol.lexer import *
+
+__all__ = getattr(__import__('egdol.lexer', fromlist=['*']), '__all__', [n for n in dir() if not n.startswith('_')])
 """Lexer for egdol mini-DSL.
 
 Token types:

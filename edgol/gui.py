@@ -1,3 +1,6 @@
+from egdol.gui import *
+
+__all__ = getattr(__import__('egdol.gui', fromlist=['*']), '__all__', [n for n in dir() if not n.startswith('_')])
 """Simple tkinter GUI for egdol: treeview for facts/rules, query entry, results table, trace/log pane, stats panel."""
 import tkinter as tk
 from tkinter import ttk

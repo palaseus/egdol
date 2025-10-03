@@ -1,3 +1,6 @@
+from egdol.interpreter import *
+
+__all__ = getattr(__import__('egdol.interpreter', fromlist=['*']), '__all__', [n for n in dir() if not n.startswith('_')])
 """Interpreter for egdol DSL with basic inference (unification + backtracking).
 
 Uses a RulesEngine instance (which stores facts and rules). The interpreter

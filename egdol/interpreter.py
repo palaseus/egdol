@@ -18,6 +18,11 @@ class CutException(Exception):
     pass
 
 
+class UnificationError(Exception):
+    """Raised when unification fails due to a structural/occurs-check issue."""
+    pass
+
+
 class Interpreter:
     def __init__(self, engine):
         self.engine = engine
@@ -48,6 +53,15 @@ class Interpreter:
         self._choice_counter = 0
         # optional type checking for builtin args (disabled by default)
         self.type_checking = False
+        # enable occurs-check by default to prevent creating cyclic bindings
+        self.occurs_check = True
+        # whether to raise UnificationError on occurs-check failures (False -> unify fails silently)
+        self.raise_on_occurs = False
+        # tabling (memoization) disabled by default; can be toggled on Interpreter
+        self.tabling = False
+        # small local cache used while tabling; maps table keys to list of subst dicts
+        # persistent storage of answers lives on engine._table
+        self._local_table = {}
 
     def _register_default_builtins(self):
         self.builtins['is'] = self._builtin_is
@@ -718,13 +732,31 @@ class Interpreter:
         yield dict(subst)
 
     def _extend_subst(self, subst: Dict[str, object], varname: str, val) -> Dict[str, object] or None:
-        # avoid simple circular bindings (occurs check omitted for simplicity)
+        # avoid circular bindings: perform occurs-check if enabled
         s = dict(subst)
         if varname in s:
             return self._unify(s[varname], val, s)
         # if val is Variable bound to something, fetch its binding
         if isinstance(val, Variable) and val.name in s:
             return self._unify(Variable(varname), s[val.name], s)
+        # occurs-check: do not allow varname to appear inside val when considering current bindings
+        def _occurs(vname: str, term) -> bool:
+            # apply current tentative substitution s when walking
+            t = self._apply_subst(term, s)
+            if isinstance(t, Variable):
+                return t.name == vname
+            if isinstance(t, Term):
+                for a in t.args:
+                    if _occurs(vname, a):
+                        return True
+            return False
+
+        if getattr(self, 'occurs_check', False) and _occurs(varname, val):
+            # by default, fail unification (return None). Optionally raise for callers that want explicit errors.
+            if getattr(self, 'raise_on_occurs', False):
+                raise UnificationError(f"Occurs check: variable {varname} occurs in {val}")
+            return None
+
         s[varname] = val
 
         # Helper: apply subst and check structural equality (concrete equality only)
@@ -775,7 +807,8 @@ class Interpreter:
 
         return s
 
-    def _prove(self, goal: Term, subst: Dict[str, object], depth: int = 0) -> Generator[Dict[str, object], None, None]:
+    def _prove_inner(self, goal: Term, subst: Dict[str, object], depth: int = 0) -> Generator[Dict[str, object], None, None]:
+        """Original proving implementation (moved to _prove_inner)."""
         if depth > getattr(self, 'max_depth', 100):
             raise MaxDepthExceededError(f'Max proof depth {self.max_depth} exceeded at depth {depth} while proving {goal}')
         self.prove_count += 1
@@ -930,6 +963,80 @@ class Interpreter:
         # pop indentation when leaving goal for trace level 3
         if getattr(self, 'trace_level', 0) >= 3:
             self._trace_indent = max(0, getattr(self, '_trace_indent', 1) - 1)
+
+    def _prove(self, goal: Term, subst: Dict[str, object], depth: int = 0) -> Generator[Dict[str, object], None, None]:
+        """Wrapper around _prove_inner that performs optional tabling (memoization).
+
+        Currently only caches answers for fully-ground goals (no variables after applying
+        the current substitution). The table is stored on the engine (`engine._table`) so
+        it survives across queries when desired.
+        """
+        # simple helper to canonicalize a ground term into a key string
+        def _canonical_key(g: Term):
+            # Represent as name/arity plus string of recursively rendered args
+            def render(x):
+                if isinstance(x, Constant):
+                    return f"C:{x.value}"
+                if isinstance(x, Term):
+                    return f"T:{x.name}({','.join(render(a) for a in x.args)})"
+                if isinstance(x, Variable):
+                    return f"V:{x.name}"
+                return repr(x)
+            return (g.name, len(g.args) if isinstance(g, Term) else 0, render(g))
+
+        # If tabling disabled, just call inner prover
+        if not getattr(self, 'tabling', False):
+            yield from self._prove_inner(goal, subst, depth)
+            return
+
+        # attempt to compute table key for the goal under substitution
+        applied = self._apply_subst(goal, subst)
+        # only table Term goals (not builtins, negation) and only ground ones
+        if not isinstance(applied, Term) or self._is_not(applied) or (isinstance(applied, Term) and any(isinstance(a, Variable) for a in self._collect_vars(applied))):
+            # not safe to table non-ground or special goals
+            yield from self._prove_inner(goal, subst, depth)
+            return
+
+        key = _canonical_key(applied)
+        table = getattr(self.engine, '_table', None)
+        if table is None:
+            # initialize table on engine
+            self.engine._table = {}
+            table = self.engine._table
+
+        entry = table.get(key)
+        # in-progress sentinel to prevent re-entrance loops
+        IN_PROGRESS = object()
+        if entry is IN_PROGRESS:
+            # recursive call encountered; avoid infinite loop by yielding nothing for now
+            return
+        if entry is not None and entry is not IN_PROGRESS:
+            # return cached answers; need to remap stored ground answers into current subst
+            for ans in entry:
+                # ans is a dict varname->ground term; yield a copy
+                yield dict(ans)
+            return
+
+        # mark as in-progress
+        table[key] = IN_PROGRESS
+        answers = []
+        try:
+            for s in self._prove_inner(goal, subst, depth):
+                # only store ground answers (no variables)
+                ground_ans = {}
+                for k, v in s.items():
+                    val = self._apply_subst(v, s)
+                    if isinstance(val, Variable):
+                        # non-ground, don't include in table
+                        ground_ans = None
+                        break
+                    ground_ans[k] = val
+                if ground_ans is not None:
+                    answers.append(ground_ans)
+                yield s
+        finally:
+            # cache answers if any
+            table[key] = answers
 
     def _start_timeout(self):
         # set up a threading.Timer to set interrupt flag after timeout_seconds

@@ -40,6 +40,9 @@ class RulesEngine:
         self._trie_root = {}
         # action history for undo (list of tuples (type, payload))
         self._action_history = []
+        # simple call-answer table for tabling/memoization: key -> list of answer dicts
+        # key is (pred_name, arity, canonical_str); answers are list of dicts varname->ground_term
+        self._table = {}
 
     def add_fd_domain(self, varname: str, low, high):
         # accept either an explicit iterable of values or a range low..high inclusive
@@ -706,6 +709,11 @@ class RulesEngine:
             for ch in keystr:
                 node = node.setdefault(ch, {})
             node.setdefault('_vals', []).append(fact)
+        # invalidate memoization table on dynamic update
+        try:
+            self._table.clear()
+        except Exception:
+            self._table = {}
 
     def add_rule(self, rule: Rule):
         """Store a rule (not used for inference yet)."""
@@ -726,6 +734,11 @@ class RulesEngine:
             for ch in keystr:
                 node = node.setdefault(ch, {})
             node.setdefault('_vals', []).append(rule)
+        # invalidate memoization table on dynamic update
+        try:
+            self._table.clear()
+        except Exception:
+            self._table = {}
 
     def query(self, q: Term) -> List[Dict[str, object]]:
         """Query stored facts for matches against term `q`.
@@ -1079,6 +1092,11 @@ class RulesEngine:
         self._rule_index = {}
         for r in self.rules:
             self._rule_index.setdefault(r.head.name, []).append(r)
+        # invalidate memoization table on dynamic update
+        try:
+            self._table.clear()
+        except Exception:
+            self._table = {}
         return removed
 
     def export_to_dot(self, path: str):

@@ -179,14 +179,14 @@ class ParallelQueryExecutor:
         if not goals:
             return
             
-        # Create pipeline stages
+        # Create pipeline stages (simplified)
         stages = []
         for i, goal in enumerate(goals):
-            stage = PipelineStage(
-                stage_id=i,
-                goal=goal,
-                max_depth=max_depth
-            )
+            stage = {
+                'stage_id': i,
+                'goal': goal,
+                'max_depth': max_depth
+            }
             stages.append(stage)
             
         # Execute pipeline
@@ -217,15 +217,15 @@ class ParallelQueryExecutor:
             for result in current_results:
                 yield result
                 
-    def _execute_pipeline_stage(self, stage: PipelineStage, 
+    def _execute_pipeline_stage(self, stage, 
                                    input_subst: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Execute a single pipeline stage."""
         interp = Interpreter(self.engine)
-        interp.max_depth = stage.max_depth
+        interp.max_depth = stage['max_depth']
         
         try:
             # Apply input substitution to goal
-            goal = self._apply_substitution(stage.goal, input_subst)
+            goal = self._apply_substitution(stage['goal'], input_subst)
             
             # Execute goal
             results = list(interp.query(goal))

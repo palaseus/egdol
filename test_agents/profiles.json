@@ -1,0 +1,15 @@
+{
+  "profiles": [
+    {
+      "name": "test_agent",
+      "description": "A test agent",
+      "personality": {},
+      "expertise": [
+        "reasoning"
+      ],
+      "created_at": 1759505636.1287932,
+      "last_active": 1759505636.128794
+    }
+  ],
+  "last_updated": 1759505636.1988077
+}

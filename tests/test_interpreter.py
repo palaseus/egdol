@@ -1,8 +1,8 @@
 import unittest
 
-from edgol.rules_engine import RulesEngine
-from edgol.interpreter import Interpreter
-from edgol.parser import Term, Variable, Constant, Rule
+from egdol.rules_engine import RulesEngine
+from egdol.interpreter import Interpreter
+from egdol.parser import Term, Variable, Constant, Rule
 
 
 class InterpreterTests(unittest.TestCase):

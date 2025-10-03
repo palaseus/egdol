@@ -1,6 +1,6 @@
 """Minimal headless tkinter shim used for tests when real tkinter is unavailable.
 
-This provides the small subset of the tkinter/ttk API that edgol.gui relies on.
+This provides the small subset of the tkinter/ttk API that egdol.gui relies on.
 It's intentionally simple and non-graphical; methods are no-ops or simple state holders
 so GUI unit tests can exercise logic in headless CI.
 """

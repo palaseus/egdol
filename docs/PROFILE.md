@@ -1,7 +1,7 @@
 Profile subsystem (Phase 1)
 ==========================
 
-This document describes the runtime profiling and analysis features added to edgol.
+This document describes the runtime profiling and analysis features added to egdol.
 It covers REPL commands, the structured JSON schema for exports, and the analysis output.
 
 REPL commands

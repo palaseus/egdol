@@ -1,6 +1,6 @@
-from edgol.main import run_session, format_profile_summary
-from edgol.rules_engine import RulesEngine
-from edgol.interpreter import Interpreter
+from egdol.main import run_session, format_profile_summary
+from egdol.rules_engine import RulesEngine
+from egdol.interpreter import Interpreter
 
 
 def test_format_profile_summary_contains_expected_keys():

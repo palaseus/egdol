@@ -527,7 +527,7 @@ class RulesEngine:
         from .parser import Parser
         with open(path, 'r', encoding='utf-8') as fh:
             text = fh.read()
-        # Preprocess: convert basic Prolog lines into edgol statements usable by Parser.
+    # Preprocess: convert basic Prolog lines into egdol statements usable by Parser.
         # We'll split carefully preserving '..' ranges and '|' in lists. We support:
         #  - rules: head :- body. -> rule: head => body.
         #  - disjunctions: A ; B -> rendered in body as Term(';', [A,B]) when parsed
@@ -1104,7 +1104,7 @@ class RulesEngine:
         for v, op, expr in getattr(self, '_fd_constraints', []):
             fd_nodes.append((v, op, str(expr)))
         with open(path, 'w', encoding='utf-8') as fh:
-            fh.write('digraph edgol {\n')
+            fh.write('digraph egdol {\n')
             for n in nodes:
                 fh.write(f'  "{n}";\n')
             for e in edges:

@@ -1,5 +1,5 @@
 
-"""Parser for edgol mini-DSL.
+"""Parser for egdol mini-DSL.
 
 Produces simple AST nodes:
 - Term(name, args)

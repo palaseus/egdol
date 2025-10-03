@@ -1,4 +1,4 @@
-"""Lexer for edgol mini-DSL.
+"""Lexer for egdol mini-DSL.
 
 Token types:
 - IDENT: identifiers and names

@@ -1,6 +1,6 @@
 import unittest
 
-from edgol.main import run_session
+from egdol.main import run_session
 
 
 class MainSessionTests(unittest.TestCase):

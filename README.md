@@ -10,23 +10,23 @@
 ---------------
 ---------------
 ----------------------
-edgol — a lightweight local rule-based assistant
+egdol — a lightweight local rule-based assistant
 ===============================================
 
 Overview
 --------
-edgol is a compact, Prolog-style rule and fact engine implemented in pure Python
+egdol is a compact, Prolog-style rule and fact engine implemented in pure Python
 with zero external dependencies. It's intended as a fast, offline playground for
 experimenting with logic programming, rapid prototyping of rule systems, and
 local reasoning tasks.
 
 Core files
 ----------
-- `edgol/lexer.py`      — tokenization of the mini-DSL
-- `edgol/parser.py`     — AST and parser for facts, rules, and queries
-- `edgol/rules_engine.py` — storage, indexing, and constraint support
-- `edgol/interpreter.py` — unification and depth-first proof search (inference)
-- `edgol/main.py`       — REPL and session runner (including `:load`)
+- `egdol/lexer.py`      — tokenization of the mini-DSL
+- `egdol/parser.py`     — AST and parser for facts, rules, and queries
+- `egdol/rules_engine.py` — storage, indexing, and constraint support
+- `egdol/interpreter.py` — unification and depth-first proof search (inference)
+- `egdol/main.py`       — REPL and session runner (including `:load`)
 - `tests/`              — unit tests for lexer/parser/engine/interpreter
 
 Quick start
@@ -34,7 +34,7 @@ Quick start
 Start the REPL:
 
 ```bash
-python3 -m edgol.main
+python3 -m egdol.main
 ```
 
 Examples (statements end with `.`):
@@ -71,7 +71,7 @@ python3 -m unittest discover -v
 
 Notes
 -----
-edgol is intentionally small and educational. The interpreter implements a
+egdol is intentionally small and educational. The interpreter implements a
 standardizing-apart unifier and depth-first search without an occurs-check and
 without many Prolog optimizations. It's a reliable base for experimentation and
 local tooling.
@@ -100,7 +100,7 @@ Control features
 
   Query: `? bachelor(john).` succeeds if `married(john)` is not found.
 
-Extending edgol
+Extending egdol
 ---------------
 Add custom builtins by subclassing `Interpreter` and registering handlers:
 
@@ -124,7 +124,7 @@ REPL trace mode
 
 Profiling & Analysis (built-in, production-ready)
 -----------------------------------------------
-edgol includes a lightweight, non-intrusive profiling subsystem built for
+egdol includes a lightweight, non-intrusive profiling subsystem built for
 observability, CI integration, and local optimization. Profiling inspects
 already-collected counters — it does not change interpreter semantics.
 
@@ -212,7 +212,7 @@ Structured profile JSON (schema)
 
 Programmatic API
 ~~~~~~~~~~~~~~~
-Use these helpers from `edgol.main` when building tools or CI steps:
+Use these helpers from `egdol.main` when building tools or CI steps:
 
 - `format_profile_summary(engine, interp, structured=True)` — returns
   `(text_summary, structured_dict)`
@@ -256,9 +256,9 @@ Why this profiler?
 - Extensible: the structured schema is small and can be extended (schema
   versioning recommended for long-term stability).
 
-Next steps / Extending edgol
+Next steps / Extending egdol
 ---------------------------
-If you want to expand edgol beyond the core engine, here are high-ROI
+If you want to expand egdol beyond the core engine, here are high-ROI
 ideas:
 
 - Add custom builtins for domain-specific reasoning (see `Interpreter` API).

@@ -1,7 +1,7 @@
 import io
 from contextlib import redirect_stdout
-from edgol.main import run_session, repl
-from edgol.rules_engine import RulesEngine
+from egdol.main import run_session, repl
+from egdol.rules_engine import RulesEngine
 
 
 def test_pretty_facts_and_rules_and_stats(capsys):

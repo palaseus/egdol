@@ -1,7 +1,7 @@
 import unittest
 
-from edgol.lexer import Lexer
-from edgol.parser import Parser, Fact, Rule, Query, Term, Variable, Constant, ParseError
+from egdol.lexer import Lexer
+from egdol.parser import Parser, Fact, Rule, Query, Term, Variable, Constant, ParseError
 
 
 class ParserTests(unittest.TestCase):
@@ -40,7 +40,7 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(repr(nodes[0].term), 'parent(father(john), mary)')
 
     def test_macro_validate_valid_and_invalid(self):
-        from edgol.rules_engine import RulesEngine
+        from egdol.rules_engine import RulesEngine
         eng = RulesEngine()
         # valid macro: params declared and used
         eng.add_macro('q', ['X'], 'fact: p(X).')
@@ -53,8 +53,8 @@ class ParserTests(unittest.TestCase):
         self.assertIn('unbound variables', res2)
 
     def test_macro_ast_multi_statement_and_hygienic(self):
-        from edgol.rules_engine import RulesEngine
-        from edgol.parser import Term, Variable, Constant
+        from egdol.rules_engine import RulesEngine
+        from egdol.parser import Term, Variable, Constant
         eng = RulesEngine()
         # macro with two statements: a fact and a rule using X
         eng.add_macro('m', ['X'], 'fact: p(X). rule: q(X) => p(X).')

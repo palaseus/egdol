@@ -2,9 +2,9 @@ import unittest
 import tempfile
 import os
 
-from edgol.rules_engine import RulesEngine
-from edgol.main import run_session
-from edgol.interpreter import Interpreter
+from egdol.rules_engine import RulesEngine
+from egdol.main import run_session
+from egdol.interpreter import Interpreter
 
 
 class PersistenceTests(unittest.TestCase):

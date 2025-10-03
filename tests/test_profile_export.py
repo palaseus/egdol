@@ -1,7 +1,7 @@
 import json
-from edgol.main import format_profile_summary, export_profile_json, analyze_profile
-from edgol.rules_engine import RulesEngine
-from edgol.interpreter import Interpreter
+from egdol.main import format_profile_summary, export_profile_json, analyze_profile
+from egdol.rules_engine import RulesEngine
+from egdol.interpreter import Interpreter
 
 
 def make_engine_with_profile():

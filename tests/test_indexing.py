@@ -1,6 +1,6 @@
 import unittest
-from edgol.rules_engine import RulesEngine
-from edgol.parser import Term, Constant
+from egdol.rules_engine import RulesEngine
+from egdol.parser import Term, Constant
 
 class IndexingTests(unittest.TestCase):
     def test_set_trie_index_mode(self):
@@ -16,7 +16,7 @@ class IndexingTests(unittest.TestCase):
         s2 = eng.stats()
         self.assertEqual(s2['index_mode'], 'trie')
         # query should find 100 facts via trie lookup
-        from edgol.parser import Variable
+        from egdol.parser import Variable
         key = Term('p', [Variable('X')])
         results = eng.query(key)
         # results are list of bindings (empty for ground facts) so expect 100 matches

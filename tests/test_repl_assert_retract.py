@@ -2,8 +2,8 @@ import unittest
 import tempfile
 import os
 
-from edgol.main import run_session, load_file
-from edgol.rules_engine import RulesEngine
+from egdol.main import run_session, load_file
+from egdol.rules_engine import RulesEngine
 
 
 class ReplAssertRetractTests(unittest.TestCase):

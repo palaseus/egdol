@@ -1,10 +1,10 @@
 import unittest
 
-from edgol.rules_engine import RulesEngine
-from edgol.parser import Parser
-from edgol.lexer import Lexer
-from edgol.interpreter import Interpreter
-from edgol.parser import Term, Constant
+from egdol.rules_engine import RulesEngine
+from egdol.parser import Parser
+from egdol.lexer import Lexer
+from egdol.interpreter import Interpreter
+from egdol.parser import Term, Constant
 
 
 class ModuleAndTypeTests(unittest.TestCase):
@@ -30,7 +30,7 @@ class ModuleAndTypeTests(unittest.TestCase):
         interp = Interpreter(engine)
         interp.type_checking = True
         # atom_length should accept constant
-        from edgol.parser import Term, Constant, Variable
+        from egdol.parser import Term, Constant, Variable
         q = Term('atom_length', [Constant('hello'), Variable('N')])
         res = interp.query(q)
         self.assertEqual(len(res), 1)

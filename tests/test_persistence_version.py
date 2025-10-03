@@ -3,8 +3,8 @@ import tempfile
 import os
 import json
 
-from edgol.rules_engine import RulesEngine
-from edgol.parser import Term, Constant
+from egdol.rules_engine import RulesEngine
+from egdol.parser import Term, Constant
 
 
 class PersistenceVersionTests(unittest.TestCase):

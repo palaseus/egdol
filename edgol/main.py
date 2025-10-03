@@ -1,4 +1,4 @@
-"""CLI entrypoint and session runner for edgol"""
+"""CLI entrypoint and session runner for egdol"""
 from .lexer import Lexer
 from .parser import Parser, Fact, Rule, Query
 from .rules_engine import RulesEngine
@@ -202,7 +202,7 @@ def load_file(engine: RulesEngine, path: str):
 
 
 def repl():
-    print("edgol REPL - type 'exit' to quit")
+    print("egdol REPL - type 'exit' to quit")
     engine = RulesEngine()
     interp = Interpreter(engine)
     # setup readline autocompletion for commands and known predicate names
@@ -226,7 +226,7 @@ def repl():
     undo_limit = 20
     while True:
         try:
-            line = input('edgol> ')
+            line = input('egdol> ')
         except EOFError:
             break
         if not line:
@@ -956,7 +956,7 @@ def load_file(engine: RulesEngine, path: str):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='edgol')
+    parser = argparse.ArgumentParser(prog='egdol')
     parser.add_argument('--max-depth', type=int, default=None, help='Set interpreter max proof depth')
     parser.add_argument('--trace-level', type=int, default=None, help='Set trace level')
     parser.add_argument('--load', type=str, default=None, help='Load a file before starting REPL')
@@ -1014,7 +1014,7 @@ if __name__ == '__main__':
             raise SystemExit(1)
 
     # session load
-    session_path = os.path.expanduser('~/.edgol_session.json')
+    session_path = os.path.expanduser('~/.egdol_session.json')
     if args.load_session and os.path.exists(session_path):
         try:
             import json

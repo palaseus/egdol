@@ -1,7 +1,7 @@
 import unittest
 
-from edgol.rules_engine import RulesEngine
-from edgol.parser import Term, Variable, Constant
+from egdol.rules_engine import RulesEngine
+from egdol.parser import Term, Variable, Constant
 
 
 class RulesEngineTests(unittest.TestCase):

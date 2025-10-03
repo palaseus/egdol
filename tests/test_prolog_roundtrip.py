@@ -1,7 +1,7 @@
 import tempfile
 import os
 
-from edgol.rules_engine import RulesEngine
+from egdol.rules_engine import RulesEngine
 
 
 def test_export_import_list_disjunction_roundtrip(tmp_path):

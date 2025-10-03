@@ -1,1 +1,1 @@
-"""Tests package for edgol"""
+"""Tests package for egdol"""

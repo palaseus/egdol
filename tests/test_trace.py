@@ -2,9 +2,9 @@ import unittest
 import logging
 import io
 
-from edgol.rules_engine import RulesEngine
-from edgol.interpreter import Interpreter
-from edgol.parser import Term, Constant
+from egdol.rules_engine import RulesEngine
+from egdol.interpreter import Interpreter
+from egdol.parser import Term, Constant
 
 
 class TraceTests(unittest.TestCase):

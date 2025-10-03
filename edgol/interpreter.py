@@ -1,4 +1,4 @@
-"""Interpreter for edgol DSL with basic inference (unification + backtracking).
+"""Interpreter for egdol DSL with basic inference (unification + backtracking).
 
 Uses a RulesEngine instance (which stores facts and rules). The interpreter
 performs depth-first proof search to satisfy queries using facts and rules.
@@ -587,7 +587,7 @@ class Interpreter:
             return
 
     def run_script(self, path: str):
-        # load and run a .edgol script file (facts/rules/queries)
+    # load and run a .egdol script file (facts/rules/queries)
         from .main import load_file
         load_file(self.engine, path)
         return

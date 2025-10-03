@@ -9,17 +9,17 @@ def run(cmd):
 
 
 def test_script_human(tmp_path):
-    script = tmp_path / 's.edgol'
+    script = tmp_path / 's.egdol'
     script.write_text('fact: a(b).\n? a(b).\n')
-    code, out, err = run(f"{sys.executable} -m edgol.main --script {script}")
+    code, out, err = run(f"{sys.executable} -m egdol.main --script {script}")
     assert code == 0
     assert 'true.' in out
 
 
 def test_script_json(tmp_path):
-    script = tmp_path / 's2.edgol'
+    script = tmp_path / 's2.egdol'
     script.write_text('fact: a(b).\n? a(b).\n')
-    code, out, err = run(f"{sys.executable} -m edgol.main --script {script} --output-format json")
+    code, out, err = run(f"{sys.executable} -m egdol.main --script {script} --output-format json")
     assert code == 0
     data = json.loads(out)
     assert 'results' in data

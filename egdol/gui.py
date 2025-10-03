@@ -1,4 +1,4 @@
-"""Simple tkinter GUI for edgol: treeview for facts/rules, query entry, results table, trace/log pane, stats panel."""
+"""Simple tkinter GUI for egdol: treeview for facts/rules, query entry, results table, trace/log pane, stats panel."""
 import tkinter as tk
 from tkinter import ttk
 from .rules_engine import RulesEngine
@@ -6,11 +6,11 @@ from .interpreter import Interpreter
 from .parser import Term
 import threading
 
-class EdgolGUI:
+class EgdolGUI:
     def __init__(self, engine: RulesEngine):
         self.engine = engine
         self.root = tk.Tk()
-        self.root.title('edgol GUI')
+        self.root.title('egdol GUI')
         # capture trace lines (list of (depth, text))
         self._trace_lines = []
         self._trace_depth_filter = 999
@@ -411,5 +411,5 @@ class EdgolGUI:
 def launch_gui(engine: RulesEngine = None):
     if engine is None:
         engine = RulesEngine()
-    gui = EdgolGUI(engine)
+    gui = EgdolGUI(engine)
     gui.mainloop()

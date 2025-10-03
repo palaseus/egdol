@@ -1,4 +1,4 @@
-"""edgol package initializer"""
+"""egdol package initializer"""
 
 from .lexer import Token, Lexer, LexerError
 

@@ -1,8 +1,8 @@
 import unittest
 
-from edgol.interpreter import Interpreter
-from edgol.rules_engine import RulesEngine
-from edgol.parser import Term, Constant, Variable
+from egdol.interpreter import Interpreter
+from egdol.rules_engine import RulesEngine
+from egdol.parser import Term, Constant, Variable
 
 
 class AppendGenerativeTests(unittest.TestCase):

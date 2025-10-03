@@ -1,7 +1,7 @@
 import unittest
 from unittest import mock
 
-# Mock tkinter elements used by edgol.gui
+# Mock tkinter elements used by egdol.gui
 class FakeTk:
     def __init__(self):
         self._widgets = []
@@ -76,7 +76,7 @@ class FakeText:
 
 class GuiMockTests(unittest.TestCase):
     def test_gui_edit_and_stream_and_trace(self):
-        # Patch tkinter and ttk in the edgol.gui module import path
+        # Patch tkinter and ttk in the egdol.gui module import path
         import sys
         fake_tk_mod = mock.MagicMock()
         fake_tk_mod.Tk.return_value = FakeTk()
@@ -88,12 +88,12 @@ class GuiMockTests(unittest.TestCase):
         sys.modules['tkinter'] = fake_tk_mod
         sys.modules['tkinter.ttk'] = fake_ttk
         # import gui after injecting mocks
-        from edgol.gui import EdgolGUI
-        from edgol.rules_engine import RulesEngine
-        from edgol.interpreter import Interpreter
+        from egdol.gui import EgdolGUI
+        from egdol.rules_engine import RulesEngine
+        from egdol.interpreter import Interpreter
         eng = RulesEngine()
         interp = Interpreter(eng)
-        gui = EdgolGUI(eng)
+        gui = EgdolGUI(eng)
         # simulate inserting a fact via tree edit
         tree = gui.tree
         iid = tree.insert('', 'end', text='fact1', values=('fact',))

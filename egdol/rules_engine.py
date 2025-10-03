@@ -520,7 +520,7 @@ class RulesEngine:
         return path
 
     def import_prolog(self, path: str):
-        """Import a very small subset of Prolog-like syntax: facts, rules, dif (\==), and in/2 domains.
+        r"""Import a very small subset of Prolog-like syntax: facts, rules, dif (\==), and in/2 domains.
 
         This parser uses the existing Lexer/Parser where possible but also
         accepts bare Prolog terms like 'p(a).' or 'p(X) :- q(X).'"""

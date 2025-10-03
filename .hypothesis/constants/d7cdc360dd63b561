@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/conversational/reasoning_normalizer.py
+# hypothesis_version: 6.139.2
+
+[0.3, 0.5, 'Archivist', 'COMMAND', 'Hello', 'Invalid confidence', 'Invalid entities', 'Invalid metadata', 'Lawmaker', 'Missing domain', 'Missing intent_type', 'Missing personality', 'Missing user_input', 'Oracle', 'QUESTION', 'REQUEST', 'Strategos', 'basic', 'basic_reasoning', 'civilizational', 'comparative_fallback', 'complexity_level', 'confidence', 'context', 'context_clues', 'cosmic', 'default_context', 'domain', 'entities', 'fallback_required', 'fallback_type', 'general', 'general_fallback', 'governance', 'historical', 'historical_fallback', 'intent_type', 'meta_rule', 'meta_rule_reasoning', 'metadata', 'original_input', 'personality', 'query', 'reasoning_type', 'requires_fallback', 'strategic', 'strategic_reasoning', 'structural_fallback', 'tactical_fallback', 'timestamp', 'universe', 'universe_reasoning', 'user_input']

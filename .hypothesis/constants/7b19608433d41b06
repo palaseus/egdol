@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/skills/base.py
+# hypothesis_version: 6.139.2
+
+['A skill for OmniMind', 'capabilities', 'description', 'name']

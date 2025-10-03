@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/dsl2/ast.py
+# hypothesis_version: 6.139.2
+
+['actions', 'arguments', 'ast', 'binary_expression', 'block', 'column', 'condition', 'conditions', 'else_branch', 'expression', 'fact', 'function_call', 'left', 'line', 'literal', 'literal_type', 'name', 'operand', 'operator', 'predicate', 'query', 'right', 'rule', 'statements', 'subject', 'then_branch', 'type', 'unary_expression', 'value', 'variable']

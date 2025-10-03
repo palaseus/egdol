@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/reflexive/modifier.py
+# hypothesis_version: 6.139.2
+
+[0.5, 'average_confidence', 'changes', 'cleanup_old_entries', 'confidence_score', 'config', 'description', 'fact', 'fact_exists', 'fact_id', 'failed_modifications', 'get_memory_snapshot', 'id', 'items_removed', 'memory', 'memory_entries', 'memory_usage_percent', 'modification_type', 'name', 'new_rule', 'new_skill', 'new_value', 'original_state', 'performance_impact', 'r', 'reasoning', 'rollback_data', 'rule', 'rule_exists', 'rule_id', 'setting', 'skill', 'skill_definition', 'skill_exists', 'skill_name', 'status', 'success_rate', 'timestamp', 'total_entries', 'total_modifications', 'type', 'value', 'w']

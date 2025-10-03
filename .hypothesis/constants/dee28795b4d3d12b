@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/memory/indexer.py
+# hypothesis_version: 6.139.2
+
+[10000, 'Constant', 'Rule', 'Term', 'Variable', '\\b[a-zA-Z]+\\b', 'args', 'body', 'concept_counts', 'head', 'name', 'predicate_counts', 'total_concepts', 'total_predicates', 'total_relationships', 'type', 'value']

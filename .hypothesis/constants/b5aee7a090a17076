@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/dsl/repl.py
+# hypothesis_version: 6.139.2
+
+['\n# Rules\n', '\x1b[0m', '\x1b[1m', '\x1b[4m', '\x1b[91m', '\x1b[92m', '\x1b[93m', '\x1b[94m', '\x1b[95m', '\x1b[96m', '\x1b[97m', '#', '# Egdol Session\n\n', '# Facts\n', ', ', ':', ':exit', ':quit', 'No bindings', '__main__', 'clear', 'cls', 'commands', 'description', 'exit', 'facts', 'help', 'load', 'posix', 'queries', 'quit', 'r', 'reset', 'results', 'rules', 'save', 'session.egdol', 'stats', 'tab: complete', 'trace', 'w', '~/.egdol_history']

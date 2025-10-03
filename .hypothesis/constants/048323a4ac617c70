@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/dsl2/context.py
+# hypothesis_version: 6.139.2
+
+[1000, 'boy', 'conversation_depth', 'current_entity', 'entities', 'entity_references', 'female', 'female_entity', 'girl', 'he', 'her', 'hers', 'him', 'his', 'it', 'item', 'its', 'male', 'male_entity', 'man', 'neutral_entity', 'newest_context', 'object', 'oldest_context', 'plural_entity', 'previous_entity', 'recent_context', 'session_variables', 'she', 'that', 'they', 'thing', 'this', 'timestamp', 'unique_entities', 'variable_bindings', 'woman']

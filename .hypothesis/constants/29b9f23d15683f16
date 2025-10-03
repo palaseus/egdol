@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/meta/inspector.py
+# hypothesis_version: 6.139.2
+
+[0.2, 0.4, 0.5, 0.6, 0.8, 1000, 10000, 86400, 'Rule', 'Term', 'X', 'applicable_rules', 'avg_confidence', 'body', 'by_source', 'by_type', 'confidence', 'conflict_type', 'contradiction', 'description', 'error', 'fact', 'goal', 'head', 'high', 'low', 'medium', 'name', 'predicate', 'query', 'reasoning_steps', 'recent_memories', 'rule', 'rule1_id', 'rule2_id', 'rule_id', 'source', 'step', 'time_span_days', 'total_memories', 'type', 'usage_count', 'very_high', 'very_low']

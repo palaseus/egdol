@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/dsl2/__init__.py
+# hypothesis_version: 6.139.2
+
+['ContextManager', 'DSL2AST', 'DSL2Compiler', 'DSL2Lexer', 'DSL2Parser', 'Expression', 'Fact', 'Node', 'Query', 'Rule', 'Statement']

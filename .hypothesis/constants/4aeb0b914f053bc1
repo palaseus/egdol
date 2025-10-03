@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/skills/__init__.py
+# hypothesis_version: 6.139.2
+
+['BaseSkill', 'CodeSkill', 'FileSkill', 'GeneralSkill', 'LogicSkill', 'MathSkill', 'SkillManager']

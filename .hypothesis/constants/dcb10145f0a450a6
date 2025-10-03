@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/skills/math_skill.py
+# hypothesis_version: 6.139.2
+
+['%', '*', '**', '+', '-', '/', '=', '\\d+[\\+\\-\\*\\/\\=]\\d+', '^', '__builtins__', 'add', 'arithmetic', 'average', 'calculate', 'compute', 'content', 'divide', 'equals', 'error', 'eval', 'expression', 'math', 'mean', 'metadata', 'minus', 'multiply', 'plus', 'reasoning', 'result', 'skill', 'solve', 'subtract', 'success', 'sum', 'times', 'total', 'unit conversions', '×', '÷']

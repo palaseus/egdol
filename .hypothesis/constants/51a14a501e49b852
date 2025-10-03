@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/strategic/knowledge_lifecycle.py
+# hypothesis_version: 6.139.2
+
+[0.1, 0.3, 1.0, 100, 86400, 'action', 'action_applied', 'active_items', 'age_threshold', 'average_confidence', 'average_usage', 'confidence_score', 'confidence_threshold', 'conflicting_items', 'conflicts', 'content', 'created_at', 'data', 'dependencies', 'id', 'item_id', 'knowledge_graph', 'knowledge_type', 'last_accessed', 'lifecycle_actions', 'lifecycle_analyzed', 'obsolete_items', 'redundant_items', 'state', 'state_distribution', 'states', 'success', 'timestamp', 'total_items', 'type', 'unknown', 'usage_count', 'usage_threshold']

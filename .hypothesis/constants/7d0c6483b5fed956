@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/skills/general_skill.py
+# hypothesis_version: 6.139.2
+
+['?', 'Capability question', 'Detected farewell', 'Detected greeting', 'Fallback response', 'General question', 'General statement', 'Identity question', 'Status question', 'bye', 'capabilities', 'content', 'context awareness', 'conversation', 'fallback', 'fallback responses', 'farewell', 'farewells', 'general', 'general knowledge', 'good afternoon', 'good evening', 'good morning', 'goodbye', 'greeting', 'greetings', 'hello', 'hey', 'hi', 'how are you', 'identity', 'metadata', 'question', 'questions', 'reasoning', 'see you', 'skill', 'statement', 'status', 'take care', 'type', 'what can you do', 'what is your name', 'who are you']

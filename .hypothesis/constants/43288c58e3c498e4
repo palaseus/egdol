@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/memory.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.4, 0.6, 0.8, 0.9, 1.0, 5.0, 10.0, 86400, 'activity_score', 'assistant_response', 'by_type', 'confidence', 'content', 'diversity_score', 'duration', 'empty', 'end_time', 'excellent', 'explicit_fact', 'explicit_rule', 'export_timestamp', 'fact', 'fair', 'good', 'id', 'messages', 'poor', 'r', 'recent_items', 'recent_memories', 'responses', 'rule', 'score', 'session_id', 'start_time', 'status', 'summary', 'timestamp', 'total_items', 'total_memories', 'total_sessions', 'type', 'user_input', 'user_inputs', 'w']

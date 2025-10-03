@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/planner/scheduler.py
+# hypothesis_version: 6.139.2
+
+[0.1, 0.2, 1.0, 2.0, 3.0, 4.0, 'completed_tasks', 'failed_tasks', 'pending_tasks', 'queue_size', 'running_tasks', 'total_tasks']

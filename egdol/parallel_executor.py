@@ -421,6 +421,25 @@ class WorkerStats:
         self.total_idle_time += idle_time
 
 
+@dataclass
+class ParallelExecutionPlan:
+    """Plan for parallel query execution."""
+    goal: Term
+    num_workers: int
+    partitioning_strategy: str
+    estimated_cost: float
+
+
+@dataclass
+class ParallelizationAnalysis:
+    """Analysis of parallelization potential."""
+    variables: Set[str]
+    predicates: List[str]
+    independence_score: float
+    distribution_score: float
+    parallelization_potential: float
+
+
 class ParallelQueryOptimizer:
     """Optimizer for parallel query execution."""
     
@@ -547,22 +566,3 @@ class ParallelCostModel:
         aggregation_cost = self.base_costs['result_aggregation'] * task_count
         
         return base_cost + communication_cost + aggregation_cost
-
-
-@dataclass
-class ParallelExecutionPlan:
-    """Plan for parallel query execution."""
-    goal: Term
-    num_workers: int
-    partitioning_strategy: str
-    estimated_cost: float
-
-
-@dataclass
-class ParallelizationAnalysis:
-    """Analysis of parallelization potential."""
-    variables: Set[str]
-    predicates: List[str]
-    independence_score: float
-    distribution_score: float
-    parallelization_potential: float

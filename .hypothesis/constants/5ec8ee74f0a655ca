@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/dsl/tokenizer.py
+# hypothesis_version: 6.139.2
+
+['!', '"[^"]*"', "'[^']*'", ',', ':', ';', 'EOF', '[A-Z]', '[A-Z][a-z]+', '[a-z]+', '\\.', '\\?', '\\d+', '\\n', '\\s+', 'a', 'all', 'an', 'and', 'are', 'because', 'but', 'can', 'do', 'does', 'exit', 'facts', 'has', 'have', 'he', 'help', 'her', 'hers', 'him', 'his', 'how', 'if', 'is', 'it', 'load', 'me', 'no', 'not', 'or', 'quit', 'reset', 'rules', 'save', 'she', 'show', 'so', 'some', 'the', 'their', 'them', 'then', 'they', 'trace', 'what', 'when', 'where', 'who', 'why', 'will']

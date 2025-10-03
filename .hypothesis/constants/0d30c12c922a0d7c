@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/knowledge_graph/inference.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.8, ' → ', 'No valid path found', 'closeness_centrality', 'confidence', 'conflict', 'degree_centrality', 'direct', 'edges', 'explanation', 'intermediate', 'missing_direct_link', 'neighbor_count', 'node_id', 'nodes', 'path', 'source', 'suggested_edge_type', 'target', 'transitive', 'transitive_inference', 'type']

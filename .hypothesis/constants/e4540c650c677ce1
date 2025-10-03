@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/autonomous/scheduler.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.1, 1.0, 'enabled', 'enabled_tasks', 'interval', 'last_run', 'metadata', 'name', 'next_run', 'running', 'task_types', 'total_tasks', 'type']

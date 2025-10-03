@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/dsl2/compiler.py
+# hypothesis_version: 6.139.2
+
+['.', 'actions', 'arguments', 'binary_expression', 'block', 'boolean', 'column', 'condition', 'conditional', 'conditions', 'egdol_fact', 'egdol_rule', 'else_branch', 'error', 'errors', 'expression', 'fact', 'facts', 'function_call', 'left', 'line', 'name', 'number', 'operand', 'operator', 'predicate', 'queries', 'query', 'right', 'rule', 'rules', 'statement', 'statements', 'string', 'subject', 'success_rate', 'then_branch', 'total_compilations', 'total_errors', 'total_facts', 'total_queries', 'total_rules', 'total_warnings', 'type', 'unary_expression', 'warnings']

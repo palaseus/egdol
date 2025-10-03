@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/agents/__init__.py
+# hypothesis_version: 6.139.2
+
+['Agent', 'AgentManager', 'AgentProfile', 'Message', 'MessageBus']

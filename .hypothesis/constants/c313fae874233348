@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/conversational/interface.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.5, 'According to', 'Archivist', 'Commander', 'ConversationTurn', 'From the archives', 'In the cosmic', 'Lawmaker', 'Oracle', 'PERSONALITY_SWITCH', 'Strategos', 'average_confidence', 'basic_reasoning', 'complexity_level', 'content', 'context_shift', 'context_type', 'conversation_summary', 'conversational_data', 'current_personality', 'domain', 'emotional_tone', 'error', 'fallback_used', 'general', 'intent_type', 'meta_insights', 'meta_rule_reasoning', 'meta_rules_applied', 'most_used', 'neutral', 'personality', 'personality_info', 'personality_insights', 'personality_usage', 'processing_steps', 'reasoning', 'reasoning_summary', 'reasoning_trace', 'reasoning_types_used', 'reflection_used', 'response', 'session_id', 'strategic_reasoning', 'success', 'total_insights', 'total_switches', 'total_traces', 'total_turns', 'universe_reasoning', 'urgency']

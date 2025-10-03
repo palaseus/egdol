@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/meta/modifier.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.7, 0.8, 1.0, 10.0, 86400, 'Rule', 'Term', 'Variable', 'X', 'action', 'add_conditions', 'args', 'auto_generated', 'auto_merged', 'body', 'condition', 'confidence', 'current_complexity', 'description', 'fact', 'facts', 'frequency', 'generated_from', 'generated_from_facts', 'head', 'merged_from', 'modification', 'name', 'new_rule', 'pattern', 'predicate', 'recent_modifications', 'remove_conditions', 'rule', 'rule_id', 'simplify_rule', 'success', 'success_rate', 'suggestion', 'timestamp', 'total_modifications', 'type']

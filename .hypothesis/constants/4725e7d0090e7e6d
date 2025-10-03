@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/knowledge_graph/integrator.py
+# hypothesis_version: 6.139.2
+
+[' has ', ' if ', ' implies ', ' is ', ' related to ', ' then ', ' → ', '%Y-%m-%d %H:%M:%S', 'average_confidence', 'concept', 'confidence', 'density', 'edge_types', 'edges', 'entity', 'entity1', 'entity2', 'explanation', 'exported_at', 'is_a_relationship', 'node_types', 'nodes', 'path', 'path_length', 'path_relationship', 'relationship', 'summary', 'target', 'total_edges', 'total_nodes', 'type', 'what does ', 'what is ', 'who is ']

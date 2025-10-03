@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/dsl/simple_dsl.py
+# hypothesis_version: 6.139.2
+
+['\nGoodbye! 👋', "\nUse 'quit' to exit", ' has ', ' is ', ':', '?', 'Could not parse fact', 'Could not parse rule', 'Egdol DSL Examples:', 'Engine reset', 'Goodbye! 👋', 'X', '__main__', 'a ', 'adult', 'an ', 'child', 'command', 'count', 'description', 'does ', 'egdol> ', 'error', 'exit', 'fact', 'facts', 'has', 'have', 'help', 'human', 'if', 'is', 'is ', 'message', 'mortal', 'num_facts', 'num_rules', 'predicate', 'property', 'query', 'quit', 'reset', 'results', 'rule', 'rules', 'smart', 'stats', 'subject', 'then', 'type', 'unknown', 'what is', 'who is']

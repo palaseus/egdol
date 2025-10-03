@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/advanced_profiler.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.001, 0.01, 0.5, 0.6, 1.0, 100, 1000, 'Event Index', 'Event Timeline', 'Rule Call Graph', 'Rules', 'Slow rule', 'Time', 'Time (seconds)', 'args', 'average_query_time', 'call_graph', 'callee', 'caller', 'duration', 'edges', 'error', 'function', 'kwargs', 'lightblue', 'nodes', 'performance_metrics', 'profiling_plots', 'query', 'query_end', 'query_error', 'query_id', 'query_profiles', 'query_start', 'recommendations', 'result_count', 'rule_call', 'rule_execution', 'rule_name', 'rule_profiles', 'success', 'summary', 'total_execution_time', 'total_queries', 'total_rules_executed', 'total_time', 'unification', 'unknown', 'viridis', 'w']

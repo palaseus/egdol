@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/autonomous/watchers.py
+# hypothesis_version: 6.139.2
+
+[0.0, 1.0, 'confidence_watcher', 'enabled', 'enabled_watchers', 'fact_watcher', 'interval', 'last_triggered', 'metadata', 'name', 'predicate', 'priority', 'rule_pattern', 'rule_watcher', 'threshold', 'time_watcher', 'total_triggers', 'total_watchers', 'trigger_count', 'type']

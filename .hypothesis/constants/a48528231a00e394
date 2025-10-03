@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/knowledge_graph/visualizer.py
+# hypothesis_version: 6.139.2
+
+[0.5, 0.8, '  </graph>\n', '  rankdir=LR;\n', '#45B7D1', '#4ECDC4', '#96CEB4', '#DDA0DD', '#FF6B6B', '#FFEAA7', '%Y-%m-%d %H:%M:%S', '-', '</graphml>\n', '_', 'attribute', 'classes', 'concept', 'confidence', 'data', 'elements', 'entity', 'exported_at', 'group', 'high-confidence', 'id', 'label', 'links', 'low-confidence', 'medium-confidence', 'metadata', 'name', 'nodes', 'other', 'properties', 'relationship', 'rule', 'source', 'strength', 'target', 'total_elements', 'total_links', 'total_nodes', 'type', 'w', '}\n']

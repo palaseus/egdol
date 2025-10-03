@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/planner/planner.py
+# hypothesis_version: 6.139.2
+
+[1.0, 'Goal not found', 'active_goals', 'completed_at', 'completed_goals', 'completed_tasks', 'completion_rate', 'created_at', 'dependencies', 'description', 'error', 'failed_tasks', 'goal_id', 'id', 'max_retries', 'name', 'parameters', 'planned_at', 'planning_history', 'priority', 'progress', 'reasoning_trace', 'result', 'retry_count', 'skill_required', 'started_at', 'status', 'success', 'tasks', 'tasks_count', 'total_goals', 'total_tasks']

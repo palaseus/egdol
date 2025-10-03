@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/parallel_executor.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.001, 0.002, 0.005, 0.05, 0.1, 0.5, 0.6, 0.8, 1.0, 5.0, 100.0, 100, '_batch_id', '_processed_at', '_result_id', 'affinity_based', 'average_task_time', 'fast', 'goal', 'hash_based', 'load_aware', 'load_balance_score', 'load_balancing', 'max_depth', 'result_aggregation', 'root', 'round_robin', 'stage_id', 'task_creation', 'thorough', 'throughput', 'timeout', 'total_execution_time', 'total_tasks', 'worker_0', 'worker_communication', 'worker_utilization']

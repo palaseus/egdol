@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/network/communication.py
+# hypothesis_version: 6.139.2
+
+[0.8, 1.0, 100, 'CRITICAL', 'EMERGENCY', 'agent_count', 'agent_id', 'agent_stats', 'cluster_size', 'communication_count', 'confidence_score', 'content', 'delivered', 'delivery_rate', 'description', 'error', 'expires_at', 'high', 'high_priority', 'id', 'medium', 'medium_priority', 'message', 'message_id', 'message_type', 'metadata', 'optimizations', 'priority', 'processed', 'received', 'recipient_id', 'requires_response', 'response_sent', 'response_to', 'sender_id', 'sent', 'timestamp', 'total_delivered', 'total_messages', 'total_optimizations', 'total_received', 'total_sent', 'type', 'type_distribution']

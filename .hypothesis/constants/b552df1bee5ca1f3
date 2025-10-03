@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/memory/store.py
+# hypothesis_version: 6.139.2
+
+[0.0, 1.0, 100, 10000, 86400, ' AND confidence >= ?', ' AND content LIKE ?', ' AND item_type = ?', ' AND source = ?', ' AND timestamp < ?', 'MemoryItem', 'by_type', 'confidence', 'confidence = ?', 'content', 'content = ?', 'database_path', 'egdol_memory.db', 'export_timestamp', 'id', 'item_type', 'memories', 'metadata', 'metadata = ?', 'r', 'recent_items', 'source', 'timestamp', 'total_items', 'total_memories', 'w']

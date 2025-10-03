@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/knowledge_graph/graph.py
+# hypothesis_version: 6.139.2
+
+[1.0, 'Edge', 'KnowledgeGraph', 'Node', 'avg_confidence', 'confidence', 'created_at', 'edge_type', 'edge_types', 'edges', 'exported_at', 'id', 'name', 'node_type', 'node_types', 'nodes', 'properties', 'source_id', 'target_id', 'total_edges', 'total_nodes', 'updated_at']

@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/agents/manager.py
+# hypothesis_version: 6.139.2
+
+['active_agents', 'agents_data', 'communication_stats', 'data_directory', 'description', 'expertise', 'is_active', 'last_active', 'last_updated', 'name', 'notification', 'profiles', 'profiles.json', 'r', 'total_agents', 'w']

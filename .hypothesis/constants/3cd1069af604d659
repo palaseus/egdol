@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/experimental/__init__.py
+# hypothesis_version: 6.139.2
+
+['AutonomousResearcher', 'ConfidenceLevel', 'CreativeOutput', 'CreativeSynthesizer', 'CycleStatus', 'DiscoveryType', 'ExpansionStrategy', 'Experiment', 'ExperimentExecutor', 'ExperimentResult', 'ExperimentStatus', 'ExperimentType', 'Hypothesis', 'HypothesisGenerator', 'HypothesisStatus', 'HypothesisType', 'InnovationLevel', 'IntegrationStatus', 'KnowledgeExpander', 'KnowledgeItem', 'ResearchCycle', 'ResearchPhase', 'ResearchProject', 'ResearchStatus', 'ResultAnalyzer', 'ResultType', 'SynthesisType']

@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/memory/serializer.py
+# hypothesis_version: 6.139.2
+
+['Constant', 'Fact', 'Rule', 'Term', 'Unknown', 'Variable', 'args', 'body', 'head', 'name', 'term', 'type', 'value']

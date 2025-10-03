@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/gui.py
+# hypothesis_version: 6.139.2
+
+[999, '1.0', ':', '; ', '<B1-Motion>', '<ButtonPress-1>', '<ButtonRelease-1>', '<Double-1>', 'Bindings', 'D', 'Edit', 'Max trace depth:', 'Query:', 'Run', 'Running...', 'Save', 'Stats', 'Trace', '_interrupt_flag', '_obj', '_start_timeout', '_stop_timeout', 'binding', 'both', 'depth=(\\d+)', 'egdol GUI', 'end', 'false.', 'get', 'global', 'head', 'headings', 'horizontal', 'left', 'right', 'rules', 'stats', 'term', 'text', 'trace', 'x', 'y']

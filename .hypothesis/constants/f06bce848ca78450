@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/transcendence/__init__.py
+# hypothesis_version: 6.139.2
+
+['AgentCluster', 'AgentType', 'ArchiveStatus', 'BlueprintType', 'Civilization', 'CivilizationDNA', 'CodificationStatus', 'EnvironmentState', 'ExperimentBatch', 'ExperimentResult', 'ExperimentScenario', 'ExperimentStatus', 'ExperimentType', 'FeedbackApplication', 'FeedbackPipeline', 'FeedbackStatus', 'FeedbackType', 'GovernanceModel', 'InteractionType', 'IntrospectionStatus', 'IntrospectionType', 'LineageTree', 'LineageType', 'MacroPattern', 'MacroPatternDetector', 'MetaRule', 'MetaRuleType', 'PatternBlueprint', 'PatternSignificance', 'PatternType', 'PolicyArchetype', 'StrategicDoctrine', 'StrategicDomain', 'StrategicInteraction', 'StrategicSimulation', 'SystemInsight', 'TemporalState', 'UniverseParameters', 'UniverseState', 'UniverseStatus', 'UniverseType']

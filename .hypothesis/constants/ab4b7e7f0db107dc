@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/personas/persona.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.1, 0.2, 0.5, 1.0, 2.0, 'action', 'active_persona', 'analysis', 'ancient', 'bug', 'code', 'contract', 'court', 'create', 'created_at', 'creation_count', 'debug', 'delete', 'description', 'development', 'from_persona', 'historical', 'history', 'id', 'knowledge_base', 'last_used', 'law', 'lawyer', 'legal', 'medieval', 'memory_context', 'name', 'past', 'persona_id', 'persona_type', 'plan', 'planning', 'programming', 'response_style', 'skills', 'software', 'strategic', 'strategy', 'switch_count', 'timestamp', 'to_persona', 'total_personas', 'update', 'updates', 'usage_count', 'usage_stats']

@@ -39,7 +39,7 @@ class QueryOptimizer:
         # Create optimized query (simplified for now)
         return SimpleOptimizedQuery(goal, best_strategy, self.engine)
         
-    def _analyze_query(self, goal: Term) -> QueryAnalysis:
+    def _analyze_query(self, goal: Term):
         """Analyze query structure and characteristics."""
         variables = self._extract_variables(goal)
         predicates = self._extract_predicates(goal)
@@ -55,13 +55,13 @@ class QueryOptimizer:
         # Estimate cardinality
         cardinality = self._estimate_cardinality(goal, selectivity)
         
-        return QueryAnalysis(
-            variables=variables,
-            predicates=predicates,
-            selectivity=selectivity,
-            dependencies=dependencies,
-            cardinality=cardinality
-        )
+        return {
+            'variables': variables,
+            'predicates': predicates,
+            'selectivity': selectivity,
+            'dependencies': dependencies,
+            'cardinality': cardinality
+        }
         
     def _extract_variables(self, goal: Term) -> Set[str]:
         """Extract all variables from goal."""
@@ -150,7 +150,7 @@ class QueryOptimizer:
         
         return max(1, estimated_cardinality)
         
-    def _generate_strategies(self, analysis: QueryAnalysis) -> List[OptimizationStrategy]:
+    def _generate_strategies(self, analysis) -> List:
         """Generate optimization strategies."""
         strategies = []
         
@@ -168,7 +168,7 @@ class QueryOptimizer:
         
         return strategies
         
-    def _create_selectivity_strategy(self, analysis: QueryAnalysis) -> OptimizationStrategy:
+    def _create_selectivity_strategy(self, analysis):
         """Create strategy based on predicate selectivity."""
         # Sort predicates by selectivity (most selective first)
         sorted_predicates = sorted(

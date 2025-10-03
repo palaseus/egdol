@@ -11,7 +11,7 @@ from egdol.rules_engine import RulesEngine
 from egdol.interpreter import Interpreter
 from egdol.parser import Term, Variable, Constant, Rule
 from egdol.advanced_constraints import AdvancedConstraintEngine
-from egdol.query_optimizer import QueryOptimizer
+from egdol.simple_optimizer import SimpleQueryOptimizer
 from egdol.parallel_executor import ParallelQueryExecutor
 from egdol.advanced_profiler import AdvancedProfiler
 
@@ -23,7 +23,7 @@ class SophisticatedIntegrationTests(unittest.TestCase):
         self.engine = RulesEngine()
         self.interp = Interpreter(self.engine)
         self.constraint_engine = AdvancedConstraintEngine()
-        self.optimizer = QueryOptimizer(self.engine)
+        self.optimizer = SimpleQueryOptimizer(self.engine)
         self.parallel_executor = ParallelQueryExecutor(self.engine)
         self.profiler = AdvancedProfiler(self.engine)
 

@@ -104,6 +104,14 @@ class IntentParser:
             r'\b(parallel|multiverse|cosmic)\b'
         ]
         
+        # Reflection patterns (more specific than just "think")
+        self.reflection_patterns = [
+            r'\b(reflect|ponder|contemplate|meditate)\b',
+            r'\b(deep thought|deep thinking|deep reflection)\b',
+            r'\b(what if|suppose|imagine if)\b',
+            r'\b(consider the implications|think about the consequences)\b'
+        ]
+        
         # Emotional tone patterns
         self.emotional_patterns = {
             'excited': [r'\b(excited|thrilled|amazing|wonderful|fantastic)\b'],
@@ -186,9 +194,13 @@ class IntentParser:
         if any(re.search(pattern, input_lower) for pattern in self.universe_patterns):
             return IntentType.UNIVERSE_COMPARISON
         
-        # Check for reflection
-        if any(word in input_lower for word in ['reflect', 'think', 'consider', 'ponder']):
+        # Check for reflection (more specific patterns)
+        if any(re.search(pattern, input_lower) for pattern in self.reflection_patterns):
             return IntentType.REFLECTION
+        
+        # Check for statements first (before questions to avoid conflicts)
+        if any(re.search(pattern, input_lower) for pattern in self.statement_patterns):
+            return IntentType.STATEMENT
         
         # Check for questions
         if any(re.search(pattern, input_lower) for pattern in self.question_patterns):
@@ -197,10 +209,6 @@ class IntentParser:
         # Check for commands
         if any(re.search(pattern, input_lower) for pattern in self.command_patterns):
             return IntentType.COMMAND
-        
-        # Check for statements
-        if any(re.search(pattern, input_lower) for pattern in self.statement_patterns):
-            return IntentType.STATEMENT
         
         # Default to request
         return IntentType.REQUEST
@@ -216,6 +224,12 @@ class IntentParser:
         for word in words:
             if word[0].isupper() and len(word) > 1:
                 entities.append(word)
+        
+        # Important keywords (nouns, concepts)
+        important_words = ['meaning', 'life', 'purpose', 'existence', 'reality', 'truth', 'knowledge', 'wisdom']
+        for word in words:
+            if word.lower() in important_words:
+                entities.append(word.lower())
         
         # Numbers
         numbers = re.findall(r'\b\d+(?:\.\d+)?\b', user_input)
@@ -247,13 +261,13 @@ class IntentParser:
     
     def _determine_personality_hint(self, input_lower: str) -> Optional[str]:
         """Determine if input hints at a specific personality."""
-        if any(word in input_lower for word in ['strategy', 'war', 'tactics', 'military']):
+        if any(word in input_lower for word in ['strategy', 'war', 'tactics', 'military', 'strategos']):
             return 'strategos'
-        if any(word in input_lower for word in ['history', 'archive', 'knowledge', 'past']):
+        if any(word in input_lower for word in ['history', 'archive', 'knowledge', 'past', 'archivist']):
             return 'archivist'
-        if any(word in input_lower for word in ['law', 'rule', 'governance', 'meta']):
+        if any(word in input_lower for word in ['law', 'rule', 'governance', 'meta', 'lawmaker']):
             return 'lawmaker'
-        if any(word in input_lower for word in ['universe', 'cosmic', 'reality', 'compare']):
+        if any(word in input_lower for word in ['universe', 'cosmic', 'reality', 'compare', 'oracle']):
             return 'oracle'
         
         return None

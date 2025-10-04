@@ -206,6 +206,26 @@ class CivilizationExperimentationSystem:
             success_criteria=['cultural_vitality > 0.6', 'meme_persistence > 0.5'],
             failure_conditions=['cultural_stagnation', 'meme_extinction']
         )
+        
+        # Knowledge network topology template
+        self.scenario_templates[ExperimentType.KNOWLEDGE_NETWORK_TOPOLOGY] = ExperimentScenario(
+            id="knowledge_template",
+            name="Knowledge Network Topology Experiment",
+            description="Study knowledge network formation and evolution",
+            experiment_type=ExperimentType.KNOWLEDGE_NETWORK_TOPOLOGY,
+            parameters={
+                'network_densities': [0.1, 0.3, 0.5, 0.7],
+                'connection_patterns': ['random', 'scale_free', 'small_world', 'hierarchical'],
+                'knowledge_transfer_rates': [0.1, 0.3, 0.5, 0.7]
+            },
+            constraints={
+                'minimum_network_size': 20,
+                'maximum_connection_density': 0.8,
+                'knowledge_persistence_required': True
+            },
+            success_criteria=['network_efficiency > 0.6', 'knowledge_retention > 0.5'],
+            failure_conditions=['network_fragmentation', 'knowledge_loss']
+        )
     
     def create_experiment_batch(self, name: str, description: str,
                               experiment_type: ExperimentType,

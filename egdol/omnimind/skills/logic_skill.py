@@ -30,7 +30,8 @@ class LogicSkill(BaseSkill):
         logic_keywords = [
             'if', 'then', 'because', 'therefore', 'since', 'given that',
             'logical', 'reasoning', 'inference', 'deduce', 'conclude',
-            'premise', 'conclusion', 'argument', 'proof'
+            'premise', 'conclusion', 'argument', 'proof', 'is', 'are',
+            'fact', 'assertion', 'statement'
         ]
         
         # Question patterns

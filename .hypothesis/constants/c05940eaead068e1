@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/skills/logic_skill.py
+# hypothesis_version: 6.139.2
+
+[' is ', '?', 'No results found.', 'and', 'are', 'argument', 'assertion', 'because', 'conclude', 'conclusion', 'content', 'deduce', 'dsl_query', 'engine', 'error', 'explain\\s+why', 'explanation', 'fact', 'fact checking', 'given that', 'if', 'inference', 'is', 'is ', 'logic', 'logical', 'logical reasoning', 'metadata', 'not', 'or', 'premise', 'proof', 'prove\\s+that', 'query', 'reasoning', 'results', 'rule', 'rule evaluation', 'since', 'skill', 'statement', 'success', 'then', 'therefore', 'type', 'what is', 'who is', 'why\\s+']

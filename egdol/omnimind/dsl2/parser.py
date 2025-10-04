@@ -83,7 +83,33 @@ class DSL2Parser:
             
         # Handle different statement types
         if self.current_token.type == TokenType.IF:
-            return self.parse_conditional_statement()
+            # Check if it's a conditional statement by looking for "then"
+            # Save current position
+            original_pos = self.position
+            try:
+                # Look ahead to see if there's a "then" token
+                temp_pos = self.position
+                found_then = False
+                while temp_pos < len(self.tokens) - 1:
+                    temp_pos += 1
+                    if self.tokens[temp_pos].type == TokenType.THEN:
+                        found_then = True
+                        break
+                    elif self.tokens[temp_pos].type in [TokenType.PERIOD, TokenType.EOF]:
+                        break
+                
+                if found_then:
+                    return self.parse_conditional_statement()
+                else:
+                    # Reset position and parse as rule
+                    self.position = original_pos
+                    self.current_token = self.tokens[self.position] if self.position < len(self.tokens) else None
+                    return self.parse_fact_or_rule()
+            except:
+                # Reset position and parse as rule
+                self.position = original_pos
+                self.current_token = self.tokens[self.position] if self.position < len(self.tokens) else None
+                return self.parse_fact_or_rule()
         elif self.current_token.type in [TokenType.IDENTIFIER, TokenType.VARIABLE]:
             # Could be a fact or rule
             return self.parse_fact_or_rule()
@@ -115,6 +141,16 @@ class DSL2Parser:
         
         while (self.current_token and 
                self.current_token.type not in [TokenType.ELSE, TokenType.END, TokenType.EOF]):
+            # Try to parse as expression first (for assignments like "Y = 10")
+            try:
+                expr = self.parse_expression()
+                if expr:
+                    then_branch.append(expr)
+                    continue
+            except ParseError:
+                pass
+            
+            # Try to parse as statement
             stmt = self.parse_statement()
             if stmt:
                 then_branch.append(stmt)
@@ -125,6 +161,16 @@ class DSL2Parser:
             self.advance()
             while (self.current_token and 
                    self.current_token.type not in [TokenType.END, TokenType.EOF]):
+                # Try to parse as expression first (for assignments like "Y = 0")
+                try:
+                    expr = self.parse_expression()
+                    if expr:
+                        else_branch.append(expr)
+                        continue
+                except ParseError:
+                    pass
+                
+                # Try to parse as statement
                 stmt = self.parse_statement()
                 if stmt:
                     else_branch.append(stmt)
@@ -135,6 +181,10 @@ class DSL2Parser:
         """Parse a fact or rule statement."""
         line = self.current_token.line
         column = self.current_token.column
+        
+        # Check if this is a rule starting with "If"
+        if self.current_token and self.current_token.type == TokenType.IF:
+            return self.parse_rule(None, line, column)
         
         # Parse subject (just the first identifier/variable)
         if self.current_token and self.current_token.type in [TokenType.IDENTIFIER, TokenType.VARIABLE]:
@@ -169,7 +219,7 @@ class DSL2Parser:
         
     def parse_rule(self, subject: Expression, line: int, column: int) -> Rule:
         """Parse a rule statement."""
-        conditions = [subject]
+        conditions = []
         actions = []
         
         # Parse conditions
@@ -177,22 +227,68 @@ class DSL2Parser:
             self.advance()
             while (self.current_token and 
                    self.current_token.type not in [TokenType.THEN, TokenType.IMPLIES]):
-                cond = self.parse_expression()
-                if cond:
-                    conditions.append(cond)
-                if self.current_token and self.current_token.type == TokenType.AND:
+                # Parse a simple condition like "X is human"
+                if self.current_token.type in [TokenType.IDENTIFIER, TokenType.VARIABLE]:
+                    var = self.parse_primary()
+                    if self.current_token and self.current_token.type == TokenType.IS:
+                        self.advance()
+                        if self.current_token and self.current_token.type in [TokenType.IDENTIFIER, TokenType.VARIABLE]:
+                            pred = self.parse_primary()
+                            # Create a simple equality condition
+                            cond = BinaryExpression(var, TokenType.EQUALS, pred, var.line, var.column)
+                            conditions.append(cond)
+                        else:
+                            # Skip if no predicate
+                            pass
+                    else:
+                        # Just add the variable as a condition
+                        conditions.append(var)
+                elif self.current_token.type == TokenType.AND:
                     self.advance()
+                else:
+                    # Try to parse as expression
+                    try:
+                        cond = self.parse_expression()
+                        if cond:
+                            conditions.append(cond)
+                    except ParseError:
+                        break
+        
+        # Add subject as condition if provided
+        if subject:
+            conditions.insert(0, subject)
                     
         # Parse actions
         if self.current_token and self.current_token.type in [TokenType.THEN, TokenType.IMPLIES]:
             self.advance()
             while (self.current_token and 
                    self.current_token.type not in [TokenType.END, TokenType.EOF]):
-                action = self.parse_expression()
-                if action:
-                    actions.append(action)
-                if self.current_token and self.current_token.type == TokenType.AND:
+                # Parse a simple action like "X is mortal"
+                if self.current_token.type in [TokenType.IDENTIFIER, TokenType.VARIABLE]:
+                    var = self.parse_primary()
+                    if self.current_token and self.current_token.type == TokenType.IS:
+                        self.advance()
+                        if self.current_token and self.current_token.type in [TokenType.IDENTIFIER, TokenType.VARIABLE]:
+                            pred = self.parse_primary()
+                            # Create a simple equality action
+                            action = BinaryExpression(var, TokenType.EQUALS, pred, var.line, var.column)
+                            actions.append(action)
+                        else:
+                            # Skip if no predicate
+                            pass
+                    else:
+                        # Just add the variable as an action
+                        actions.append(var)
+                elif self.current_token.type == TokenType.AND:
                     self.advance()
+                else:
+                    # Try to parse as expression
+                    try:
+                        action = self.parse_expression()
+                        if action:
+                            actions.append(action)
+                    except ParseError:
+                        break
                     
         return Rule(conditions, actions, line, column)
         
@@ -203,6 +299,12 @@ class DSL2Parser:
         
         self.expect(TokenType.QUESTION)
         expression = self.parse_expression()
+        
+        # Consume any remaining tokens until we hit a statement boundary
+        while (self.current_token and 
+               self.current_token.type not in [TokenType.EOF, TokenType.QUESTION, TokenType.IF]):
+            self.advance()
+        
         return Query(expression, line, column)
         
     def parse_fact_from_expression(self, expr: Expression) -> Fact:

@@ -58,6 +58,17 @@ class HasFact(FactStatement):
         return visitor.visit_has_fact(self)
 
 
+class NotFact(FactStatement):
+    """Represents 'X is not Y' facts."""
+    
+    def __init__(self, subject: 'Subject', predicate: 'Predicate'):
+        self.subject = subject
+        self.predicate = predicate
+        
+    def accept(self, visitor):
+        return visitor.visit_not_fact(self)
+
+
 class RuleStatement(Statement):
     """Base class for rule statements."""
     pass
@@ -232,6 +243,26 @@ class AdjectivePredicate(Predicate):
         
     def accept(self, visitor):
         return visitor.visit_adjective_predicate(self)
+
+
+class NumberPredicate(Predicate):
+    """Represents number predicates (e.g., '25')."""
+    
+    def __init__(self, number: str):
+        self.number = number
+        
+    def accept(self, visitor):
+        return visitor.visit_number_predicate(self)
+
+
+class CompoundPredicate(Predicate):
+    """Represents compound predicates (e.g., '25 years old')."""
+    
+    def __init__(self, compound: str):
+        self.compound = compound
+        
+    def accept(self, visitor):
+        return visitor.visit_compound_predicate(self)
 
 
 class Condition(ASTNode):

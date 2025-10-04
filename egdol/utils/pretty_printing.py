@@ -361,3 +361,6 @@ def print_universe_status(universe, title: str = "Universe Status"):
         'simulation_time': universe.simulation_time,
         'performance_metrics': universe.performance_metrics
     }, title)
+
+
+

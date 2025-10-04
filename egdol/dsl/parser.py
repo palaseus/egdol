@@ -103,7 +103,16 @@ class DSLParser:
         if self.stream.match(TokenType.IS):
             self.stream.consume()
             
+        # Handle 'is a' construction
+        if self.stream.match(TokenType.A) or self.stream.match(TokenType.AN):
+            self.stream.consume()
+            
         predicate = self._parse_predicate()
+        
+        # Handle question mark at the end
+        if self.stream.match(TokenType.QUESTION):
+            self.stream.consume()
+            
         return WhoQuery(predicate)
         
     def _parse_what_query(self) -> WhatQuery:
@@ -112,6 +121,11 @@ class DSLParser:
             self.stream.consume()
             
         subject = self._parse_subject()
+        
+        # Handle question mark at the end
+        if self.stream.match(TokenType.QUESTION):
+            self.stream.consume()
+            
         return WhatQuery(subject)
         
     def _parse_does_query(self) -> DoesQuery:
@@ -121,10 +135,32 @@ class DSLParser:
         if self.stream.match(TokenType.HAVE) or self.stream.match(TokenType.HAS):
             self.stream.consume()
             property_ = self._parse_predicate()
+            
+            # Handle compound predicates like "age 25"
+            while (self.stream.peek() and 
+                   self.stream.peek().type in [TokenType.NUMBER, TokenType.IDENTIFIER] and
+                   not self.stream.match(TokenType.QUESTION)):
+                next_token = self.stream.consume()
+                if hasattr(property_, 'noun'):
+                    property_.noun = f"{property_.noun} {next_token.value}"
+                elif hasattr(property_, 'number'):
+                    property_.number = f"{property_.number} {next_token.value}"
+                elif hasattr(property_, 'compound'):
+                    property_.compound = f"{property_.compound} {next_token.value}"
+            
+            # Handle question mark at the end
+            if self.stream.match(TokenType.QUESTION):
+                self.stream.consume()
+                
             return DoesQuery(subject, property_)
         else:
             # 'does X Y' form
             predicate = self._parse_predicate()
+            
+            # Handle question mark at the end
+            if self.stream.match(TokenType.QUESTION):
+                self.stream.consume()
+                
             return DoesQuery(subject, predicate)
             
     def _parse_show_query(self) -> ShowQuery:
@@ -135,6 +171,11 @@ class DSLParser:
             self.stream.consume()
             
         predicate = self._parse_predicate()
+        
+        # Handle period at the end
+        if self.stream.match(TokenType.PERIOD):
+            self.stream.consume()
+            
         return ShowQuery(predicate)
         
     def _parse_generic_query(self) -> GenericQuery:
@@ -167,53 +208,64 @@ class DSLParser:
             
     def _parse_fact(self) -> FactStatement:
         """Parse fact statement."""
-        # For "Person Alice is a human" - we need to handle the structure differently
-        if self.stream.match(TokenType.PROPER_NOUN):
-            # This is a proper noun subject
-            subject = self._parse_subject()
+        # Parse subject first
+        subject = self._parse_subject()
+        
+        if self.stream.match(TokenType.IS):
+            self.stream.consume()
             
-            if self.stream.match(TokenType.IS):
+            # Handle 'is not' construction
+            if self.stream.match(TokenType.NOT):
                 self.stream.consume()
-                
-                # Handle 'is a' construction
+                # Handle 'is not a' construction
                 if self.stream.match(TokenType.A) or self.stream.match(TokenType.AN):
                     self.stream.consume()
+                predicate = self._parse_predicate()
+                
+                # Handle period at the end
+                if self.stream.match(TokenType.PERIOD):
+                    self.stream.consume()
                     
-                predicate = self._parse_predicate()
-                return IsFact(subject, predicate)
-                
-            elif self.stream.match(TokenType.HAVE) or self.stream.match(TokenType.HAS):
+                return NotFact(subject, predicate)
+            
+            # Handle 'is a' construction
+            elif self.stream.match(TokenType.A) or self.stream.match(TokenType.AN):
                 self.stream.consume()
-                property_ = self._parse_predicate()
-                return HasFact(subject, property_)
-                
-            else:
-                # Direct predicate
                 predicate = self._parse_predicate()
+                
+                # Handle period at the end
+                if self.stream.match(TokenType.PERIOD):
+                    self.stream.consume()
+                    
                 return IsFact(subject, predicate)
+            else:
+                predicate = self._parse_predicate()
+                
+                # Handle period at the end
+                if self.stream.match(TokenType.PERIOD):
+                    self.stream.consume()
+                    
+                return IsFact(subject, predicate)
+            
+        elif self.stream.match(TokenType.HAVE) or self.stream.match(TokenType.HAS):
+            self.stream.consume()
+            property_ = self._parse_predicate()
+            
+            # Handle period at the end
+            if self.stream.match(TokenType.PERIOD):
+                self.stream.consume()
+                
+            return HasFact(subject, property_)
+            
         else:
-            # Try to parse as subject first
-            subject = self._parse_subject()
+            # Direct predicate
+            predicate = self._parse_predicate()
             
-            if self.stream.match(TokenType.IS):
+            # Handle period at the end
+            if self.stream.match(TokenType.PERIOD):
                 self.stream.consume()
                 
-                # Handle 'is a' construction
-                if self.stream.match(TokenType.A) or self.stream.match(TokenType.AN):
-                    self.stream.consume()
-                    
-                predicate = self._parse_predicate()
-                return IsFact(subject, predicate)
-                
-            elif self.stream.match(TokenType.HAVE) or self.stream.match(TokenType.HAS):
-                self.stream.consume()
-                property_ = self._parse_predicate()
-                return HasFact(subject, property_)
-                
-            else:
-                # Direct predicate
-                predicate = self._parse_predicate()
-                return IsFact(subject, predicate)
+            return IsFact(subject, predicate)
             
     def _parse_condition(self) -> Condition:
         """Parse condition (for rules)."""
@@ -258,15 +310,42 @@ class DSLParser:
             raise SyntaxError(f"Expected subject, got {token.value}")
             
     def _parse_predicate(self) -> Predicate:
-        """Parse predicate (noun or adjective)."""
+        """Parse predicate (noun, adjective, number, or compound)."""
         token = self.stream.consume()
         
         if token.type == TokenType.IDENTIFIER:
-            return CommonNounPredicate(token.value)
+            # Handle compound predicates like "age 30"
+            predicate_parts = [token.value]
+            
+            # Collect additional words that might be part of the predicate
+            while (self.stream.peek() and 
+                   self.stream.peek().type in [TokenType.NUMBER, TokenType.IDENTIFIER, TokenType.ADJECTIVE, TokenType.VARIABLE] and
+                   not self.stream.match(TokenType.PERIOD) and
+                   not self.stream.match(TokenType.QUESTION)):
+                next_token = self.stream.consume()
+                predicate_parts.append(next_token.value)
+            
+            if len(predicate_parts) > 1:
+                return CompoundPredicate(" ".join(predicate_parts))
+            else:
+                return CommonNounPredicate(token.value)
         elif token.type == TokenType.PROPER_NOUN:
             return ProperNounPredicate(token.value)
         elif token.type == TokenType.ADJECTIVE:
             return AdjectivePredicate(token.value)
+        elif token.type == TokenType.NUMBER:
+            # Handle compound predicates like "25 years old"
+            predicate_parts = [token.value]
+            
+            # Collect additional words that might be part of the predicate
+            while (self.stream.peek() and 
+                   self.stream.peek().type in [TokenType.IDENTIFIER, TokenType.ADJECTIVE] and
+                   not self.stream.match(TokenType.PERIOD) and
+                   not self.stream.match(TokenType.QUESTION)):
+                next_token = self.stream.consume()
+                predicate_parts.append(next_token.value)
+            
+            return CompoundPredicate(" ".join(predicate_parts))
         else:
             raise SyntaxError(f"Expected predicate, got {token.value}")
             

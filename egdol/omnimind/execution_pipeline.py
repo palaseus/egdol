@@ -498,8 +498,10 @@ class OmniMindExecutionPipeline:
             
             turn = ConversationTurn(
                 turn_id=f"audit_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+                timestamp=datetime.now(),
                 user_input=user_input,
                 system_response=response_result.get('response', ''),
+                intent="general_query",
                 personality_used=personality,
                 reasoning_trace=['pipeline_execution'],
                 confidence_score=0.8

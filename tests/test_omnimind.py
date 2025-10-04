@@ -7,7 +7,10 @@ import unittest
 import tempfile
 import os
 import time
-from egdol.omnimind import OmniMind, NLUTranslator, ConversationMemory, SkillRouter
+from egdol.omnimind.core import OmniMind
+from egdol.omnimind.nlu_translator import NLUTranslator
+from egdol.omnimind.memory import ConversationMemory
+from egdol.omnimind.router import SkillRouter
 from egdol.omnimind.skills import MathSkill, LogicSkill, GeneralSkill, CodeSkill, FileSkill
 
 

@@ -195,6 +195,10 @@ class ResourceManager:
     
     def allocate_resources(self, experiment: Experiment) -> bool:
         """Allocate resources for an experiment."""
+        # If no resource requirements, allocation is always successful
+        if not experiment.resource_requirements:
+            return True
+            
         with threading.Lock():
             # Check if resources are available
             for resource_type, required in experiment.resource_requirements.items():

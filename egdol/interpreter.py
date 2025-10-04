@@ -708,6 +708,8 @@ class Interpreter:
 
     def _builtin_bagof(self, term: Term, subst: Dict[str, object]):
         # bagof(Var, Goal, List)
+        if len(term.args) != 3:
+            raise UnificationError(f"bagof/3 requires exactly 3 arguments, got {len(term.args)}")
         V, G, L = term.args
         # collect all solutions for V from proving G
         seen = []

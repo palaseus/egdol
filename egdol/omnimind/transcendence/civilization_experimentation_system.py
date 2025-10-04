@@ -183,7 +183,7 @@ class CivilizationExperimentationSystem:
         self.active_experiments[experiment_id] = {
             'experiment': experiment,
             'civilization_ids': civilization_ids,
-            'start_time': self.temporal_evolution_engine.current_time,
+            'start_time': self.temporal_evolution_engine.current_tick,
             'current_time': 0,
             'status': 'pending'
         }
@@ -232,7 +232,7 @@ class CivilizationExperimentationSystem:
         self.active_experiments[experiment_id] = {
             'experiment': experiment,
             'civilization_ids': civilization_ids,
-            'start_time': self.temporal_evolution_engine.current_time,
+            'start_time': self.temporal_evolution_engine.current_tick,
             'current_time': 0,
             'status': 'pending'
         }
@@ -281,7 +281,7 @@ class CivilizationExperimentationSystem:
         self.active_experiments[experiment_id] = {
             'experiment': experiment,
             'civilization_ids': civilization_ids,
-            'start_time': self.temporal_evolution_engine.current_time,
+            'start_time': self.temporal_evolution_engine.current_tick,
             'current_time': 0,
             'status': 'pending'
         }
@@ -330,7 +330,7 @@ class CivilizationExperimentationSystem:
         self.active_experiments[experiment_id] = {
             'experiment': experiment,
             'civilization_ids': civilization_ids,
-            'start_time': self.temporal_evolution_engine.current_time,
+            'start_time': self.temporal_evolution_engine.current_tick,
             'current_time': 0,
             'status': 'pending'
         }
@@ -345,7 +345,7 @@ class CivilizationExperimentationSystem:
             
             experiment_data = self.active_experiments[experiment_id]
             experiment_data['status'] = 'running'
-            experiment_data['start_time'] = self.temporal_evolution_engine.current_time
+            experiment_data['start_time'] = self.temporal_evolution_engine.current_tick
             
             # Start experiment thread
             thread = threading.Thread(
@@ -638,7 +638,7 @@ class CivilizationExperimentationSystem:
     def _record_experiment_completion(self, experiment_id: str, experiment_result: ExperimentResult):
         """Record experiment completion."""
         completion_data = {
-            'time': self.temporal_evolution_engine.current_time,
+            'time': self.temporal_evolution_engine.current_tick,
             'experiment_id': experiment_id,
             'experiment_type': experiment_result.experiment_type.name,
             'success': experiment_result.success,

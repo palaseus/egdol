@@ -197,7 +197,7 @@ class StrategicCivilizationalOrchestrator:
             policy_archetypes=policy_archetypes,
             participating_civilizations=civilization_ids,
             simulation_parameters=simulation_parameters,
-            start_time=self.temporal_evolution_engine.current_time,
+            start_time=self.temporal_evolution_engine.current_tick,
             status='pending'
         )
         
@@ -214,7 +214,7 @@ class StrategicCivilizationalOrchestrator:
             
             simulation = self.active_simulations[simulation_id]
             simulation.status = 'running'
-            simulation.start_time = self.temporal_evolution_engine.current_time
+            simulation.start_time = self.temporal_evolution_engine.current_tick
             simulation.current_time = simulation.start_time
             
             # Start simulation thread

@@ -68,6 +68,22 @@ class EvolutionMetrics:
     conflict_level: float = 0.0
     resource_efficiency: float = 0.0
     governance_effectiveness: float = 0.0
+    cultural_cohesion: float = 0.0
+    technological_advancement: float = 0.0
+    environmental_harmony: float = 0.0
+    
+    # Additional attributes for pretty printing
+    @property
+    def complexity(self) -> float:
+        return self.complexity_trend[-1] if self.complexity_trend else 0.0
+    
+    @property
+    def stability(self) -> float:
+        return self.stability_trend[-1] if self.stability_trend else 0.0
+    
+    @property
+    def adaptability(self) -> float:
+        return (self.innovation_rate + self.cooperation_level) / 2.0
 
 
 class TemporalEvolutionEngine:

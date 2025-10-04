@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/interpreter.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.05, 0.1, 100, '!', '#<', '#=', '#>', '*', '+', '-', '-inf', '.', '/', '<', '<=', '=', '>', '>=', '[]', '__cut__', '_current_rule_key', '_dif_constraints', '_freeze_store', '_id', '_interrupt_flag', '_rule_profile', '_table', '_trace_indent', 'append', 'atom', 'atom_concat', 'atom_length', 'avg_time', 'avg_unify', 'bagof', 'call', 'calls', 'check_fd_consistency', 'consult', 'dif', 'err', 'fail', 'freeze', 'inf', 'is', 'length', 'list', 'max_depth', 'member', 'nl', 'not', 'number_atom', 'number|atom', 'occurs_check', 'ok', 'on_binding', 'raise_on_occurs', 'reverse', 'tabling', 'timeout_seconds', 'total_time', 'total_unify', 'total_unify_time', 'trace_level', 'type_checking', 'var', 'write']

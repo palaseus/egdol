@@ -7,6 +7,7 @@ import uuid
 import random
 import time
 import threading
+import statistics
 from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional, Tuple, Set
 from dataclasses import dataclass, field

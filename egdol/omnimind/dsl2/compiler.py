@@ -42,6 +42,12 @@ class DSL2Compiler:
                         results['rules'].append(compiled)
                     elif isinstance(statement, Query):
                         results['queries'].append(compiled)
+                    elif isinstance(statement, ConditionalStatement):
+                        # Conditional statements can contain rules, so add to rules
+                        if 'rules' in compiled:
+                            results['rules'].extend(compiled['rules'])
+                        if 'facts' in compiled:
+                            results['facts'].extend(compiled['facts'])
             except Exception as e:
                 results['errors'].append({
                     'statement': str(statement),
@@ -73,8 +79,11 @@ class DSL2Compiler:
         subject = self.compile_expression(fact.subject)
         predicate = self.compile_expression(fact.predicate)
         
-        # Create Egdol fact
-        egdol_fact = EgdolFact(subject, predicate)
+        # Create a simple term for the Egdol fact
+        # For now, we'll create a basic term structure
+        from ...parser import Term
+        egdol_term = Term('fact', [subject, predicate])
+        egdol_fact = EgdolFact(egdol_term)
         
         return {
             'type': 'fact',
@@ -127,21 +136,56 @@ class DSL2Compiler:
         
         then_compiled = []
         for stmt in conditional.then_branch:
-            compiled = self.compile_statement(stmt)
-            if compiled:
-                then_compiled.append(compiled)
+            # Handle both statements and expressions
+            if hasattr(stmt, '__class__') and stmt.__class__.__name__ in ['BinaryExpression', 'UnaryExpression', 'FunctionCall', 'Literal', 'Variable']:
+                # It's an expression, compile it as such
+                compiled = self.compile_expression(stmt)
+                if compiled:
+                    then_compiled.append(compiled)
+            else:
+                # It's a statement, compile it as such
+                compiled = self.compile_statement(stmt)
+                if compiled:
+                    then_compiled.append(compiled)
                 
         else_compiled = []
         for stmt in conditional.else_branch:
-            compiled = self.compile_statement(stmt)
-            if compiled:
-                else_compiled.append(compiled)
+            # Handle both both statements and expressions
+            if hasattr(stmt, '__class__') and stmt.__class__.__name__ in ['BinaryExpression', 'UnaryExpression', 'FunctionCall', 'Literal', 'Variable']:
+                # It's an expression, compile it as such
+                compiled = self.compile_expression(stmt)
+                if compiled:
+                    else_compiled.append(compiled)
+            else:
+                # It's a statement, compile it as such
+                compiled = self.compile_statement(stmt)
+                if compiled:
+                    else_compiled.append(compiled)
                 
+        # For conditional statements, we need to convert them to rules
+        # A conditional "If condition then action" becomes a rule
+        rules = []
+        facts = []
+        
+        # Convert the conditional to a rule
+        if then_compiled:
+            # Create a rule from the conditional
+            rule = {
+                'type': 'rule',
+                'condition': condition,
+                'action': then_compiled[0] if then_compiled else None,
+                'line': conditional.line,
+                'column': conditional.column
+            }
+            rules.append(rule)
+        
         return {
             'type': 'conditional',
             'condition': condition,
             'then_branch': then_compiled,
             'else_branch': else_compiled,
+            'rules': rules,
+            'facts': facts,
             'line': conditional.line,
             'column': conditional.column
         }

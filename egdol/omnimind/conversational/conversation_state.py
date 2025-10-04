@@ -135,22 +135,22 @@ class ConversationState:
         
         # Strategic/military context
         if any(word in input_lower for word in ['strategy', 'war', 'battle', 'tactics', 'military']):
-            if 'strategos' in available_personalities:
+            if 'strategos' in [p.lower() for p in available_personalities]:
                 return 'strategos'
         
         # Historical/philosophical context
         if any(word in input_lower for word in ['history', 'philosophy', 'ancient', 'past', 'tradition']):
-            if 'archivist' in available_personalities:
+            if 'archivist' in [p.lower() for p in available_personalities]:
                 return 'archivist'
         
         # Legal/meta-rule context
         if any(word in input_lower for word in ['law', 'rule', 'meta', 'principle', 'governance']):
-            if 'lawmaker' in available_personalities:
+            if 'lawmaker' in [p.lower() for p in available_personalities]:
                 return 'lawmaker'
         
         # Universal/comparative context
         if any(word in input_lower for word in ['universe', 'compare', 'universal', 'cosmic', 'reality']):
-            if 'oracle' in available_personalities:
+            if 'oracle' in [p.lower() for p in available_personalities]:
                 return 'oracle'
         
         return None
@@ -159,25 +159,33 @@ class ConversationState:
         """Evolve conversation phase based on input patterns."""
         input_lower = user_input.lower()
         
-        # Greeting phase
-        if any(word in input_lower for word in ['hello', 'hi', 'greetings', 'start']):
-            return ConversationPhase.GREETING
-        
-        # Exploration phase
+        # Exploration phase (check first to avoid conflicts)
         if any(word in input_lower for word in ['explore', 'discover', 'learn', 'understand']):
+            self.current_phase = ConversationPhase.EXPLORATION
             return ConversationPhase.EXPLORATION
+        
+        # Greeting phase
+        if (input_lower.startswith('hello') or input_lower.startswith('hi') or 
+            input_lower.startswith('greetings') or input_lower.startswith('start')):
+            self.current_phase = ConversationPhase.GREETING
+            return ConversationPhase.GREETING
         
         # Deep dive phase
         if any(word in input_lower for word in ['analyze', 'deep', 'complex', 'detailed']):
+            self.current_phase = ConversationPhase.DEEP_DIVE
             return ConversationPhase.DEEP_DIVE
         
         # Reflection phase
         if any(word in input_lower for word in ['reflect', 'think', 'consider', 'ponder']):
+            self.current_phase = ConversationPhase.REFLECTION
             return ConversationPhase.REFLECTION
         
         # Closure phase
         if any(word in input_lower for word in ['goodbye', 'end', 'finish', 'conclude']):
+            self.current_phase = ConversationPhase.CLOSURE
             return ConversationPhase.CLOSURE
         
         # Default to current phase or exploration
-        return self.current_phase or ConversationPhase.EXPLORATION
+        if self.current_phase is None:
+            self.current_phase = ConversationPhase.EXPLORATION
+        return self.current_phase

@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/plugins/arithmetic.py
+# hypothesis_version: 6.139.2
+
+[0.0, 1.0, 'abs', 'add', 'arithmetic', 'divide', 'equals', 'greater_equal', 'greater_than', 'less_equal', 'less_than', 'max', 'min', 'modulo', 'multiply', 'not_equals', 'power', 'subtract']

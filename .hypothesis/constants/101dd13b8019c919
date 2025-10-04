@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/dsl2/lexer.py
+# hypothesis_version: 6.139.2
+
+['!', '!=', '"', '#', '%', '&&', "'", '(', ')', '*', '**', '+', ',', '-', '.', '/', ':', ';', '<', '<=', '==', '>', '>=', '?', '[', '\\', ']', '_', 'and', 'causes', 'else', 'end', 'false', 'has', 'if', 'implies', 'is', 'n', 'not', 'or', 'part_of', 'r', 'related_to', 't', 'then', 'true', 'unless', '{', '||', '}']

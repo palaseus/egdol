@@ -13,6 +13,8 @@ class TokenType(Enum):
     # Keywords
     IF = auto()
     THEN = auto()
+    ELSE = auto()
+    END = auto()
     UNLESS = auto()
     AND = auto()
     OR = auto()
@@ -99,6 +101,8 @@ class DSL2Lexer:
         self.keywords = {
             'if': TokenType.IF,
             'then': TokenType.THEN,
+            'else': TokenType.ELSE,
+            'end': TokenType.END,
             'unless': TokenType.UNLESS,
             'and': TokenType.AND,
             'or': TokenType.OR,
@@ -115,6 +119,7 @@ class DSL2Lexer:
         
         self.operators = {
             '==': TokenType.EQUALS,
+            '=': TokenType.EQUALS,
             '!=': TokenType.NOT_EQUALS,
             '>': TokenType.GREATER_THAN,
             '<': TokenType.LESS_THAN,

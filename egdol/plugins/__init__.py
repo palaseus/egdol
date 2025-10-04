@@ -3,7 +3,7 @@ Plugin system for Egdol DSL.
 Allows extending the DSL with custom predicates and built-ins.
 """
 
-from typing import Dict, Any, Callable, List
+from typing import Dict, Any, Callable, List, Optional
 from ..rules_engine import RulesEngine
 from ..parser import Term, Variable, Constant
 

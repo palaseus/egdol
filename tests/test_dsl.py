@@ -4,6 +4,7 @@ Tests for the Egdol DSL Interactive Assistant.
 
 import unittest
 from egdol.dsl import DSLTokenizer, DSLParser, DSLExecutor
+from egdol.dsl.ast import CommandStatement
 from egdol.rules_engine import RulesEngine
 
 
@@ -17,7 +18,7 @@ class DSLTests(unittest.TestCase):
     def test_tokenizer_basic(self):
         """Test basic tokenization."""
         tokenizer = DSLTokenizer()
-        tokens = tokenizer.tokenize("Person Alice is a human.")
+        tokens = tokenizer.tokenize("Alice is a human.")
         
         # Should have tokens for each word
         self.assertGreater(len(tokens), 5)
@@ -34,7 +35,7 @@ class DSLTests(unittest.TestCase):
         tokenizer = DSLTokenizer()
         parser = DSLParser()
         
-        tokens = tokenizer.tokenize("Person Alice is a human.")
+        tokens = tokenizer.tokenize("Alice is a human.")
         ast = parser.parse(tokens)
         
         self.assertIsNotNone(ast)
@@ -42,7 +43,7 @@ class DSLTests(unittest.TestCase):
         
     def test_translator_basic_fact(self):
         """Test translating basic fact to Egdol."""
-        result = self.executor.execute("Person Alice is a human.")
+        result = self.executor.execute("Alice is a human.")
         
         self.assertIn('facts', result)
         self.assertEqual(len(result['facts']), 1)
@@ -54,7 +55,7 @@ class DSLTests(unittest.TestCase):
     def test_translator_basic_rule(self):
         """Test translating basic rule to Egdol."""
         # First add a fact
-        self.executor.execute("Person Alice is a human.")
+        self.executor.execute("Alice is a human.")
         
         # Then add a rule
         result = self.executor.execute("If X is a human then X is mortal.")
@@ -69,7 +70,7 @@ class DSLTests(unittest.TestCase):
     def test_translator_basic_query(self):
         """Test translating basic query to Egdol."""
         # Add facts and rules
-        self.executor.execute("Person Alice is a human.")
+        self.executor.execute("Alice is a human.")
         self.executor.execute("If X is a human then X is mortal.")
         
         # Query
@@ -97,7 +98,7 @@ class DSLTests(unittest.TestCase):
     def test_pronoun_resolution(self):
         """Test pronoun resolution in context."""
         # Add fact with proper noun
-        self.executor.execute("Person Alice is a human.")
+        self.executor.execute("Alice is a human.")
         
         # Use pronoun
         result = self.executor.execute("She is mortal.")
@@ -108,8 +109,8 @@ class DSLTests(unittest.TestCase):
     def test_complex_rule(self):
         """Test complex rule with conditions."""
         # Add facts
-        self.executor.execute("Person Alice is a human.")
-        self.executor.execute("Person Bob is a human.")
+        self.executor.execute("Alice is a human.")
+        self.executor.execute("Bob is a human.")
         
         # Add complex rule
         result = self.executor.execute("If X is a human and X is not a robot then X is mortal.")
@@ -120,8 +121,8 @@ class DSLTests(unittest.TestCase):
     def test_query_variations(self):
         """Test different query types."""
         # Add facts
-        self.executor.execute("Person Alice is a human.")
-        self.executor.execute("Alice has age 25.")
+        self.executor.execute("Alice is a human.")
+        self.executor.execute("Alice is 25 years old.")
         
         # Test different query types
         queries = [
@@ -166,9 +167,9 @@ class DSLIntegrationTests(unittest.TestCase):
     def test_complete_scenario(self):
         """Test a complete scenario with facts, rules, and queries."""
         # Add facts
-        self.executor.execute("Person Alice is a human.")
-        self.executor.execute("Person Bob is a human.")
-        self.executor.execute("Alice has age 25.")
+        self.executor.execute("Alice is a human.")
+        self.executor.execute("Bob is a human.")
+        self.executor.execute("Alice is 25 years old.")
         self.executor.execute("Bob has age 30.")
         
         # Add rules
@@ -185,8 +186,8 @@ class DSLIntegrationTests(unittest.TestCase):
     def test_session_persistence(self):
         """Test session persistence with save/load."""
         # Add some facts
-        self.executor.execute("Person Alice is a human.")
-        self.executor.execute("Alice has age 25.")
+        self.executor.execute("Alice is a human.")
+        self.executor.execute("Alice is 25 years old.")
         
         # Check stats
         stats = self.engine.stats()

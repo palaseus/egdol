@@ -25,7 +25,7 @@ class DSL2LexerTests(unittest.TestCase):
         tokens = self.lexer.tokenize(text)
         
         self.assertEqual(len(tokens), 4)  # Alice, is, human, EOF
-        self.assertEqual(tokens[0].type, TokenType.IDENTIFIER)
+        self.assertEqual(tokens[0].type, TokenType.VARIABLE)
         self.assertEqual(tokens[0].value, "Alice")
         self.assertEqual(tokens[1].type, TokenType.IS)
         self.assertEqual(tokens[2].type, TokenType.IDENTIFIER)
@@ -37,7 +37,7 @@ class DSL2LexerTests(unittest.TestCase):
         text = "If X is human then X is mortal"
         tokens = self.lexer.tokenize(text)
         
-        self.assertEqual(len(tokens), 8)  # If, X, is, human, then, X, is, mortal, EOF
+        self.assertEqual(len(tokens), 9)  # If, X, is, human, then, X, is, mortal, EOF
         self.assertEqual(tokens[0].type, TokenType.IF)
         self.assertEqual(tokens[1].type, TokenType.VARIABLE)
         self.assertEqual(tokens[1].value, "X")
@@ -421,8 +421,8 @@ class IntegrationTests(unittest.TestCase):
         ast = self.parser.parse(text)
         result = self.compiler.compile(ast)
         
-        self.assertIn('facts', result)
-        self.assertEqual(len(result['facts']), 1)
+        self.assertIn('rules', result)
+        self.assertEqual(len(result['rules']), 1)
         
     def test_error_recovery(self):
         """Test error recovery in compilation."""

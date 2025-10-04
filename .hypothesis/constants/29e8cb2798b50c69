@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/dsl/ast.py
+# hypothesis_version: 6.139.2
+
+['Condition', 'Predicate', 'Statement', 'Subject', 'adjective', 'and_condition', 'args', 'command', 'common_noun', 'conclusion', 'condition', 'does_query', 'fact', 'generic_query', 'has_fact', 'if_then_rule', 'is_fact', 'is_query', 'left', 'name', 'not_condition', 'noun', 'or_condition', 'predicate', 'pronoun', 'proper_noun', 'property', 'resolved', 'right', 'show_query', 'simple_condition', 'subject', 'type', 'variable', 'what_query', 'when_then_rule', 'who_query']

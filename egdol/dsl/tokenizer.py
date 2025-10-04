@@ -166,11 +166,12 @@ class DSLTokenizer:
             'exit': TokenType.EXIT,
         }
         
-        # Regex patterns
+        # Regex patterns (order matters - more specific patterns first)
         self.patterns = [
             (r'\d+', TokenType.NUMBER),
             (r'"[^"]*"', TokenType.STRING),
             (r"'[^']*'", TokenType.STRING),
+            (r'\b(If|When|Then|And|Or|Not)\b', TokenType.IDENTIFIER),  # Keywords first
             (r'[A-Z][a-z]+', TokenType.PROPER_NOUN),  # Proper nouns (capitalized)
             (r'[A-Z]', TokenType.VARIABLE),  # Single uppercase letters are variables
             (r'[a-z]+', TokenType.IDENTIFIER),  # Lowercase identifiers
@@ -224,6 +225,10 @@ class DSLTokenizer:
                         # Check if it's a command (after colon)
                         elif value.lower() in self.commands and tokens and tokens[-1].type == TokenType.COLON:
                             token_type = self.commands[value.lower()]
+                    elif token_type == TokenType.PROPER_NOUN:
+                        # Check if it's a keyword (case-insensitive)
+                        if value.lower() in self.keywords:
+                            token_type = self.keywords[value.lower()]
                     
                     # Skip whitespace tokens
                     if token_type != TokenType.WHITESPACE:

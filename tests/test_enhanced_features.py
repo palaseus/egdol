@@ -11,6 +11,7 @@ from egdol.memory import MemoryStore, MemoryItem
 from egdol.meta import MemoryInspector, RuleInspector, RuleScorer, ConfidenceTracker
 from egdol.agents import AgentManager, AgentProfile, Agent
 from egdol.autonomous import BehaviorScheduler, WatcherManager, ActionManager
+from egdol.autonomous.actions import ActionType
 
 
 class MemoryStoreTests(unittest.TestCase):
@@ -411,7 +412,7 @@ class ActionManagerTests(unittest.TestCase):
             
         success = self.action_manager.add_action(
             name="test_action",
-            action_type=ActionManager.ActionType.MEMORY,
+            action_type=ActionType.MEMORY,
             function=test_function
         )
         
@@ -423,7 +424,7 @@ class ActionManagerTests(unittest.TestCase):
         def test_function():
             pass
             
-        self.action_manager.add_action("test_action", ActionManager.ActionType.MEMORY, test_function)
+        self.action_manager.add_action("test_action", ActionType.MEMORY, test_function)
         
         success = self.action_manager.remove_action("test_action")
         self.assertTrue(success)
@@ -433,8 +434,9 @@ class ActionManagerTests(unittest.TestCase):
         """Test executing an action."""
         def test_function():
             self.execution_count += 1
+            return True
             
-        self.action_manager.add_action("test_action", ActionManager.ActionType.MEMORY, test_function)
+        self.action_manager.add_action("test_action", ActionType.MEMORY, test_function)
         
         success = self.action_manager.execute_action("test_action")
         self.assertTrue(success)
@@ -445,7 +447,7 @@ class ActionManagerTests(unittest.TestCase):
         def test_function():
             pass
             
-        self.action_manager.add_action("test_action", ActionManager.ActionType.MEMORY, test_function)
+        self.action_manager.add_action("test_action", ActionType.MEMORY, test_function)
         
         status = self.action_manager.get_action_status("test_action")
         self.assertIsNotNone(status)
@@ -458,8 +460,8 @@ class ActionManagerTests(unittest.TestCase):
         def test_function():
             pass
             
-        self.action_manager.add_action("action1", ActionManager.ActionType.MEMORY, test_function)
-        self.action_manager.add_action("action2", ActionManager.ActionType.REASONING, test_function)
+        self.action_manager.add_action("action1", ActionType.MEMORY, test_function)
+        self.action_manager.add_action("action2", ActionType.REASONING, test_function)
         
         stats = self.action_manager.get_action_stats()
         self.assertEqual(stats['total_actions'], 2)

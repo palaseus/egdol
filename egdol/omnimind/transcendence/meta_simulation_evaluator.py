@@ -200,8 +200,8 @@ class MetaSimulationEvaluator:
             benchmark_type=benchmark_type,
             target_civilizations=target_civilizations,
             evaluation_criteria=evaluation_criteria,
-            start_time=self.temporal_evolution_engine.current_time,
-            end_time=self.temporal_evolution_engine.current_time + duration,
+            start_time=self.temporal_evolution_engine.current_tick,
+            end_time=self.temporal_evolution_engine.current_tick + duration,
             status='pending'
         )
         
@@ -283,7 +283,7 @@ class MetaSimulationEvaluator:
             
             benchmark = self.active_benchmarks[benchmark_id]
             benchmark.status = 'running'
-            benchmark.start_time = self.temporal_evolution_engine.current_time
+            benchmark.start_time = self.temporal_evolution_engine.current_tick
             
             # Start benchmark thread
             thread = threading.Thread(
@@ -306,7 +306,7 @@ class MetaSimulationEvaluator:
             benchmark = self.active_benchmarks[benchmark_id]
             
             while (benchmark.status == 'running' and 
-                   self.temporal_evolution_engine.current_time < benchmark.end_time and 
+                   self.temporal_evolution_engine.current_tick < benchmark.end_time and 
                    benchmark_id in self.active_benchmarks):
                 
                 with self.evaluation_lock:
@@ -317,7 +317,7 @@ class MetaSimulationEvaluator:
                     self._update_performance_metrics(benchmark_id, benchmark)
                     
                     # Check for benchmark completion
-                    if self.temporal_evolution_engine.current_time >= benchmark.end_time:
+                    if self.temporal_evolution_engine.current_tick >= benchmark.end_time:
                         self._complete_benchmark(benchmark_id)
                         break
                     
@@ -518,7 +518,7 @@ class MetaSimulationEvaluator:
         """Complete a benchmark."""
         benchmark = self.active_benchmarks[benchmark_id]
         benchmark.status = 'completed'
-        benchmark.end_time = self.temporal_evolution_engine.current_time
+        benchmark.end_time = self.temporal_evolution_engine.current_tick
         
         # Calculate final results
         benchmark.results = self._calculate_benchmark_results(benchmark_id, benchmark)

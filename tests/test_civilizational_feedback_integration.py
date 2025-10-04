@@ -40,6 +40,7 @@ from egdol.omnimind.reflection_mode_plus_plus import (
 )
 from egdol.omnimind.conversational.reflexive_audit import ReflexiveAuditModule
 from egdol.omnimind.conversational.meta_learning_engine import MetaLearningEngine
+from egdol.omnimind.conversational.feedback_loop import FeedbackStorage
 from egdol.omnimind.conversational.personality_evolution import PersonalityEvolutionEngine
 from egdol.omnimind.conversational.reflection_mode_plus import ReflectionModePlus
 from egdol.omnimind.conversational.context_intent_resolver import ContextIntentResolver
@@ -55,7 +56,8 @@ class TestCivilizationalFeedbackIntegration(unittest.TestCase):
         """Set up test fixtures."""
         # Create mock components
         self.audit_module = ReflexiveAuditModule()
-        self.meta_learning = MetaLearningEngine()
+        self.storage = FeedbackStorage()
+        self.meta_learning = MetaLearningEngine(self.storage)
         self.personality_evolution = PersonalityEvolutionEngine(
             meta_learning_engine=self.meta_learning,
             audit_module=self.audit_module
@@ -154,7 +156,8 @@ class TestMetaRuleDiscovery(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.audit_module = ReflexiveAuditModule()
-        self.meta_learning = MetaLearningEngine()
+        self.storage = FeedbackStorage()
+        self.meta_learning = MetaLearningEngine(self.storage)
         self.discovery_engine = MetaRuleDiscoveryEngine(
             audit_module=self.audit_module,
             meta_learning=self.meta_learning
@@ -343,7 +346,8 @@ class TestReflectionModePlusPlus(unittest.TestCase):
     def setUp(self):
         """Set up test fixtures."""
         self.audit_module = ReflexiveAuditModule()
-        self.meta_learning = MetaLearningEngine()
+        self.storage = FeedbackStorage()
+        self.meta_learning = MetaLearningEngine(self.storage)
         self.personality_evolution = PersonalityEvolutionEngine(
             meta_learning_engine=self.meta_learning,
             audit_module=self.audit_module
@@ -497,7 +501,8 @@ class TestIntegrationScenarios(unittest.TestCase):
         """Set up test fixtures."""
         # Create all components
         self.audit_module = ReflexiveAuditModule()
-        self.meta_learning = MetaLearningEngine()
+        self.storage = FeedbackStorage()
+        self.meta_learning = MetaLearningEngine(self.storage)
         self.personality_evolution = PersonalityEvolutionEngine(
             meta_learning_engine=self.meta_learning,
             audit_module=self.audit_module

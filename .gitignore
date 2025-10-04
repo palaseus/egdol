@@ -53,3 +53,20 @@ env/
 
 # macOS
 .DS_Store
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# Civilization system files
+emergent_metrics.db
+world_persistence.db
+toolforge_tools/

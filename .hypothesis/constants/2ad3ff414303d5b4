@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/conversational/confidence_calibrator.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0, 'confidently', 'guidance', 'high confidence', 'include_uncertainty', 'indicate', 'level', 'low confidence', 'may', 'medium confidence', 'phrase', 'possibly', 'preliminary', 'recommend', 'score', 'should_reflect', 'strongly suggest', 'suggest', 'tentatively suggest', 'uncertain', 'very high confidence', 'very low confidence', 'with certainty']

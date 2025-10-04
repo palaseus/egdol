@@ -125,10 +125,12 @@ class ConversationalReasoningEngine:
             if not self.civilization_architect:
                 # Provide basic civilizational analysis when transcendence components aren't available
                 trace.processing_steps.append("Using basic civilizational analysis")
+                processing_time = time.time() - start_time
                 return {
                     'success': True,
                     'response': f"From a civilizational perspective, {query.lower()}. I recommend examining historical patterns, cultural evolution, and societal development. The key factors to consider are population dynamics, technological advancement, cultural exchange, and governance structures. We should analyze both successful and failed civilizations to understand the underlying principles of societal development.",
                     'reasoning_trace': trace.to_dict(),
+                    'processing_time': processing_time,
                     'confidence': 0.7,
                     'insights': ['Civilizational analysis requires historical perspective', 'Cultural evolution is critical', 'Governance structures matter']
                 }
@@ -221,10 +223,12 @@ class ConversationalReasoningEngine:
             if not self.strategic_orchestrator:
                 # Provide basic strategic analysis when transcendence components aren't available
                 trace.processing_steps.append("Using basic strategic analysis")
+                processing_time = time.time() - start_time
                 return {
                     'success': True,
                     'response': f"Commander, from a strategic perspective, {query.lower()}. I recommend a systematic approach focusing on resource allocation, timeline management, and risk assessment. The key factors to consider are technological readiness, resource availability, and potential challenges. We should develop a phased approach with clear milestones and contingency plans.",
                     'reasoning_trace': trace.to_dict(),
+                    'processing_time': processing_time,
                     'confidence': 0.7,
                     'insights': ['Strategic analysis requires systematic planning', 'Resource allocation is critical', 'Risk assessment is essential']
                 }
@@ -287,10 +291,12 @@ class ConversationalReasoningEngine:
             if not self.introspection_layer:
                 # Provide basic meta rule analysis when transcendence components aren't available
                 trace.processing_steps.append("Using basic meta rule analysis")
+                processing_time = time.time() - start_time
                 return {
                     'success': True,
                     'response': f"From a meta-rule perspective, {query.lower()}. I recommend establishing universal principles that govern complex systems. The key factors to consider are consistency, scalability, adaptability, and enforcement mechanisms. We should develop frameworks that can evolve with changing circumstances while maintaining core principles of fairness, efficiency, and sustainability.",
                     'reasoning_trace': trace.to_dict(),
+                    'processing_time': processing_time,
                     'confidence': 0.7,
                     'insights': ['Meta-rules require universal principles', 'Consistency is critical', 'Adaptability is essential']
                 }

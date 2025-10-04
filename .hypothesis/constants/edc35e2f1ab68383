@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/conversational/provenance.py
+# hypothesis_version: 6.139.2
+
+['Snapshot not found', 'created_at', 'error', 'export_timestamp', 'metadata', 'replay', 'replay_available', 'replay_function', 'replay_hook', 'reproducible', 'seed', 'sim_id', 'snapshot', 'snapshot_id', 'tick_range', 'timestamp', 'universe', 'universe_id', 'valid']

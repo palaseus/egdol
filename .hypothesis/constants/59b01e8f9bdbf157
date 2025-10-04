@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/conversational/conversation_state.py
+# hypothesis_version: 6.139.2
+
+[0.0, 'active_personality', 'analyze', 'ancient', 'archivist', 'battle', 'compare', 'complex', 'conclude', 'consider', 'context_evolution', 'context_type', 'cosmic', 'current_phase', 'deep', 'detailed', 'discover', 'duration', 'end', 'explore', 'finish', 'goodbye', 'governance', 'greetings', 'hello', 'hi', 'history', 'how', 'law', 'lawmaker', 'learn', 'meta', 'meta_rules_applied', 'military', 'oracle', 'past', 'personality_usage', 'philosophy', 'ponder', 'principle', 'reality', 'reflect', 'rule', 'session_id', 'start', 'strategos', 'strategy', 'tactics', 'think', 'total_turns', 'tradition', 'understand', 'universal', 'universe', 'war', 'what', 'when', 'where', 'which', 'who', 'why']

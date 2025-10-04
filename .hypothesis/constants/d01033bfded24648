@@ -1,0 +1,4 @@
+# file: /home/dubius/Documents/egdol/egdol/omnimind/civilization/multi_agent_system.py
+# hypothesis_version: 6.139.2
+
+[0.0, 0.02, 0.05, 0.1, 0.5, 1.0, -1000, 100, 1000, 'CivilizationAgent', 'MessageBus', 'achievements', 'agent_count', 'agent_id', 'challenge_type', 'civilization_id', 'collaboration_type', 'communication_style', 'competition_type', 'conflicts', 'consensus_topic', 'content', 'created_at', 'culture', 'debate_topic', 'discoveries', 'discovery_domain', 'domain', 'experiences', 'expertise', 'exploration', 'failures', 'formal', 'general', 'governance', 'history', 'last_updated', 'laws', 'message_id', 'message_type', 'metadata', 'name', 'personality_name', 'personality_type', 'priority', 'proposal_type', 'receiver_id', 'relationships', 'sender_id', 'technologies', 'timestamp', 'topic', 'treaties', 'treaty_type', 'type']

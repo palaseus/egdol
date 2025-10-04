@@ -12,7 +12,7 @@ from datetime import datetime
 from enum import Enum, auto
 
 from .personality_framework import Personality, PersonalityType
-from .meta_learning_engine import MetaLearningEngine, LearningInsight, HeuristicUpdate
+from .meta_learning_engine import MetaLearningEngine, PersonalityProfile, LearningMetrics, LearningInsight, HeuristicUpdate
 from .reflexive_audit import ReflexiveAuditModule, PersonalityPerformance
 
 

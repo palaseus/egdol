@@ -14,7 +14,7 @@ from .reasoning_normalizer import ReasoningNormalizer, NormalizedReasoningInput
 from .personality_fallbacks import PersonalityFallbackReasoner, FallbackResponse
 from .reflection_mode import ReflectionMode, ReflectionResult, ReflectionType, ReflectionInsight
 from .reflexive_audit import ReflexiveAuditModule, AuditResult, PersonalityPerformance
-from .meta_learning_engine import MetaLearningEngine, LearningInsight, MetaRuleDiscovery
+from .meta_learning_engine import MetaLearningEngine, PersonalityProfile, LearningMetrics, LearningInsight, HeuristicUpdate
 from .personality_evolution import PersonalityEvolutionEngine, PersonalityEvolutionState
 from .reflection_mode_plus import ReflectionModePlus, ReflectionInsightPlus
 
@@ -30,7 +30,7 @@ __all__ = [
     'PersonalityFallbackReasoner', 'FallbackResponse',
     'ReflectionMode', 'ReflectionResult', 'ReflectionType', 'ReflectionInsight',
     'ReflexiveAuditModule', 'AuditResult', 'PersonalityPerformance',
-    'MetaLearningEngine', 'LearningInsight', 'MetaRuleDiscovery',
+    'MetaLearningEngine', 'PersonalityProfile', 'LearningMetrics', 'LearningInsight', 'HeuristicUpdate',
     'PersonalityEvolutionEngine', 'PersonalityEvolutionState',
     'ReflectionModePlus', 'ReflectionInsightPlus'
 ]

@@ -1,6 +1,6 @@
 """
-Simple Test Suite for Reflexive Self-Improvement and Meta-Learning Layer
-Tests basic functionality without complex integration.
+Comprehensive Test Suite for Reflexive Self-Improvement and Meta-Learning Layer
+Tests the meta-learning, reflexive audit, personality evolution, and enhanced reflection components.
 """
 
 import unittest
@@ -150,6 +150,21 @@ class TestPersonalityEvolutionEngine(unittest.TestCase):
         self.assertIsNotNone(self.evolution_engine.meta_learning_engine)
         self.assertIsNotNone(self.evolution_engine.audit_module)
     
+    def test_evolve_personality(self):
+        """Test personality evolution."""
+        # Create a test personality
+        personality = Personality(
+            name="TestPersonality",
+            personality_type=PersonalityType.STRATEGOS,
+            description="Test personality",
+            archetype="strategos",
+            epistemic_style="formal"
+        )
+        
+        # Test evolution
+        result = self.evolution_engine.evolve_personality(personality, {})
+        self.assertIsNotNone(result)
+    
     def test_get_evolution_summary(self):
         """Test getting evolution summary."""
         summary = self.evolution_engine.get_evolution_summary()
@@ -177,6 +192,20 @@ class TestReflectionModePlus(unittest.TestCase):
         self.assertIsNotNone(self.reflection_engine.meta_learning_engine)
         self.assertIsNotNone(self.reflection_engine.personality_evolution_engine)
         self.assertIsNotNone(self.reflection_engine.audit_module)
+    
+    def test_reflect_and_retry_plus(self):
+        """Test enhanced reflection and retry."""
+        # Create a test context
+        context = ConversationContext(
+            context_type=ContextType.STRATEGIC_ANALYSIS,
+            entities=["strategy", "tactics"],
+            relationships=[],
+            confidence=0.8
+        )
+        
+        # Test reflection
+        result = self.reflection_engine.reflect_and_retry_plus(context, "test input")
+        self.assertIsNotNone(result)
     
     def test_get_reflection_summary(self):
         """Test getting reflection summary."""
@@ -235,6 +264,33 @@ class TestIntegrationReflexiveSelfImprovement(unittest.TestCase):
         results = self.meta_learning_engine.analyze_feedback_trends([feedback])
         self.assertIsNotNone(results)
         self.assertIn('trends', results)
+    
+    def test_personality_evolution_integration(self):
+        """Test personality evolution integration."""
+        # Test evolution engine
+        personality = Personality(
+            name="TestPersonality",
+            personality_type=PersonalityType.STRATEGOS,
+            description="Test personality",
+            archetype="strategos",
+            epistemic_style="formal"
+        )
+        
+        result = self.evolution_engine.evolve_personality(personality, {})
+        self.assertIsNotNone(result)
+    
+    def test_reflection_mode_plus_integration(self):
+        """Test reflection mode plus integration."""
+        # Test reflection engine
+        context = ConversationContext(
+            context_type=ContextType.STRATEGIC_ANALYSIS,
+            entities=["strategy"],
+            relationships=[],
+            confidence=0.8
+        )
+        
+        result = self.reflection_engine.reflect_and_retry_plus(context, "test input")
+        self.assertIsNotNone(result)
     
     def test_continuous_improvement_simulation(self):
         """Test continuous improvement simulation."""

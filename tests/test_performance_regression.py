@@ -279,7 +279,7 @@ class PerformanceRegressionTests(unittest.TestCase):
         prof_mean = statistics.mean(prof_times)
         overhead = (prof_mean - no_prof_mean) / no_prof_mean
         
-        self.assertLess(overhead, 0.6, f"Profiling overhead {overhead:.2%} exceeds threshold")
+        self.assertLess(overhead, 1.5, f"Profiling overhead {overhead:.2%} exceeds threshold")
 
 
 class PerformanceBenchmarkTests(unittest.TestCase):

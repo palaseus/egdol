@@ -1,6 +1,6 @@
 """
-Simple Test Suite for Reflexive Self-Improvement and Meta-Learning Layer
-Tests basic functionality without complex integration.
+Comprehensive Test Suite for Reflexive Self-Improvement and Meta-Learning Layer
+Tests the meta-learning, reflexive audit, personality evolution, and enhanced reflection components.
 """
 
 import unittest
@@ -50,7 +50,7 @@ class TestReflexiveAuditModule(unittest.TestCase):
         """Test audit module initialization."""
         self.assertIsNotNone(self.audit_module)
         self.assertIsInstance(self.audit_module.personality_performance, dict)
-        self.assertIsInstance(self.audit_module.audit_history, list)
+        self.assertIsInstance(self.audit_module.audit_metrics, dict)
     
     def test_audit_conversation_turn(self):
         """Test auditing a conversation turn."""
@@ -59,8 +59,8 @@ class TestReflexiveAuditModule(unittest.TestCase):
         self.assertIsNotNone(result)
         self.assertIsInstance(result, AuditResult)
         self.assertIsNotNone(result.turn_id)
-        self.assertIsNotNone(result.personality)
-        self.assertIsNotNone(result.metrics)
+        self.assertIsNotNone(result.personality_used)
+        self.assertIsNotNone(result.audit_score)
     
     def test_get_improvement_opportunities(self):
         """Test getting improvement opportunities."""
@@ -87,10 +87,10 @@ class TestMetaLearningEngine(unittest.TestCase):
         self.sample_feedback = [
             UserFeedback(
                 feedback_id="test_1",
-                session_id="session_1",
-                response_id="response_1",
-                feedback_type=FeedbackType.RATING,
-                rating=4.0,
+                user_id="test_user",
+                turn_id="turn_1",
+                rating=4,
+                feedback_type=FeedbackType.RESPONSE_QUALITY,
                 sentiment=FeedbackSentiment.POSITIVE,
                 personality="Strategos",
                 depth_preference="standard",
@@ -141,14 +141,27 @@ class TestPersonalityEvolutionEngine(unittest.TestCase):
     def setUp(self):
         self.storage = FeedbackStorage()
         self.meta_learning_engine = MetaLearningEngine(self.storage)
-        self.audit_module = ReflexiveAuditModule()
-        self.evolution_engine = PersonalityEvolutionEngine(self.meta_learning_engine, self.audit_module)
+        self.evolution_engine = PersonalityEvolutionEngine(self.meta_learning_engine)
     
     def test_initialization(self):
         """Test evolution engine initialization."""
         self.assertIsNotNone(self.evolution_engine)
         self.assertIsNotNone(self.evolution_engine.meta_learning_engine)
-        self.assertIsNotNone(self.evolution_engine.audit_module)
+    
+    def test_evolve_personality(self):
+        """Test personality evolution."""
+        # Create a test personality
+        personality = Personality(
+            name="TestPersonality",
+            personality_type=PersonalityType.STRATEGOS,
+            description="Test personality",
+            archetype="strategos",
+            epistemic_style="formal"
+        )
+        
+        # Test evolution
+        result = self.evolution_engine.evolve_personality(personality, {})
+        self.assertIsNotNone(result)
     
     def test_get_evolution_summary(self):
         """Test getting evolution summary."""
@@ -163,20 +176,26 @@ class TestReflectionModePlus(unittest.TestCase):
     def setUp(self):
         self.storage = FeedbackStorage()
         self.meta_learning_engine = MetaLearningEngine(self.storage)
-        self.audit_module = ReflexiveAuditModule()
-        self.evolution_engine = PersonalityEvolutionEngine(self.meta_learning_engine, self.audit_module)
-        self.reflection_engine = ReflectionModePlus(
-            self.meta_learning_engine, 
-            self.evolution_engine, 
-            self.audit_module
-        )
+        self.reflection_engine = ReflectionModePlus(self.meta_learning_engine)
     
     def test_initialization(self):
         """Test reflection engine initialization."""
         self.assertIsNotNone(self.reflection_engine)
         self.assertIsNotNone(self.reflection_engine.meta_learning_engine)
-        self.assertIsNotNone(self.reflection_engine.personality_evolution_engine)
-        self.assertIsNotNone(self.reflection_engine.audit_module)
+    
+    def test_reflect_and_retry_plus(self):
+        """Test enhanced reflection and retry."""
+        # Create a test context
+        context = ConversationContext(
+            context_type=ContextType.STRATEGIC_ANALYSIS,
+            entities=["strategy", "tactics"],
+            relationships=[],
+            confidence=0.8
+        )
+        
+        # Test reflection
+        result = self.reflection_engine.reflect_and_retry_plus(context, "test input")
+        self.assertIsNotNone(result)
     
     def test_get_reflection_summary(self):
         """Test getting reflection summary."""
@@ -191,17 +210,13 @@ class TestIntegrationReflexiveSelfImprovement(unittest.TestCase):
     def setUp(self):
         self.storage = FeedbackStorage()
         self.meta_learning_engine = MetaLearningEngine(self.storage)
-        self.audit_module = ReflexiveAuditModule()
-        self.evolution_engine = PersonalityEvolutionEngine(self.meta_learning_engine, self.audit_module)
-        self.reflection_engine = ReflectionModePlus(
-            self.meta_learning_engine, 
-            self.evolution_engine, 
-            self.audit_module
-        )
+        self.evolution_engine = PersonalityEvolutionEngine(self.meta_learning_engine)
+        self.reflection_engine = ReflectionModePlus(self.meta_learning_engine)
     
     def test_audit_integration(self):
         """Test audit module integration."""
-        self.assertIsNotNone(self.audit_module)
+        audit_module = ReflexiveAuditModule()
+        self.assertIsNotNone(audit_module)
         
         # Test audit functionality
         mock_turn = Mock()
@@ -213,7 +228,7 @@ class TestIntegrationReflexiveSelfImprovement(unittest.TestCase):
         mock_turn.reasoning_trace = []
         mock_turn.meta_insights = []
         
-        result = self.audit_module.audit_conversation_turn(mock_turn)
+        result = audit_module.audit_conversation_turn(mock_turn)
         self.assertIsNotNone(result)
     
     def test_full_meta_learning_pipeline(self):
@@ -221,10 +236,10 @@ class TestIntegrationReflexiveSelfImprovement(unittest.TestCase):
         # Create sample feedback
         feedback = UserFeedback(
             feedback_id="test_1",
-            session_id="session_1",
-            response_id="response_1",
-            feedback_type=FeedbackType.RATING,
-            rating=4.0,
+            user_id="test_user",
+            turn_id="turn_1",
+            rating=4,
+            feedback_type=FeedbackType.RESPONSE_QUALITY,
             sentiment=FeedbackSentiment.POSITIVE,
             personality="Strategos",
             depth_preference="standard",
@@ -236,16 +251,43 @@ class TestIntegrationReflexiveSelfImprovement(unittest.TestCase):
         self.assertIsNotNone(results)
         self.assertIn('trends', results)
     
+    def test_personality_evolution_integration(self):
+        """Test personality evolution integration."""
+        # Test evolution engine
+        personality = Personality(
+            name="TestPersonality",
+            personality_type=PersonalityType.STRATEGOS,
+            description="Test personality",
+            archetype="strategos",
+            epistemic_style="formal"
+        )
+        
+        result = self.evolution_engine.evolve_personality(personality, {})
+        self.assertIsNotNone(result)
+    
+    def test_reflection_mode_plus_integration(self):
+        """Test reflection mode plus integration."""
+        # Test reflection engine
+        context = ConversationContext(
+            context_type=ContextType.STRATEGIC_ANALYSIS,
+            entities=["strategy"],
+            relationships=[],
+            confidence=0.8
+        )
+        
+        result = self.reflection_engine.reflect_and_retry_plus(context, "test input")
+        self.assertIsNotNone(result)
+    
     def test_continuous_improvement_simulation(self):
         """Test continuous improvement simulation."""
         # Simulate multiple feedback cycles
         for i in range(3):
             feedback = UserFeedback(
                 feedback_id=f"test_{i}",
-                session_id=f"session_{i}",
-                response_id=f"response_{i}",
-                feedback_type=FeedbackType.RATING,
-                rating=4.0,
+                user_id="test_user",
+                turn_id=f"turn_{i}",
+                rating=4,
+                feedback_type=FeedbackType.RESPONSE_QUALITY,
                 sentiment=FeedbackSentiment.POSITIVE,
                 personality="Strategos",
                 depth_preference="standard",

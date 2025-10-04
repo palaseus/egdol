@@ -83,7 +83,9 @@ class IntentParser:
         self.civilizational_patterns = [
             r'\b(civilization|culture|society|population|governance)\b',
             r'\b(evolution|development|growth|decline)\b',
-            r'\b(patterns|trends|emergence|complexity)\b'
+            r'\b(patterns|trends|emergence|complexity)\b',
+            r'\b(historical|precedent|past|ancient|history)\b',
+            r'\b(migration|settlement|colonization|expansion)\b'
         ]
         
         self.strategic_patterns = [
@@ -95,7 +97,9 @@ class IntentParser:
         self.meta_rule_patterns = [
             r'\b(meta|rule|principle|law|governance)\b',
             r'\b(universal|fundamental|underlying)\b',
-            r'\b(discover|find|identify|detect)\b'
+            r'\b(discover|find|identify|detect)\b',
+            r'\b(legal|framework|regulation|policy|jurisdiction)\b',
+            r'\b(interplanetary|trade|commerce|economic)\b'
         ]
         
         self.universe_patterns = [

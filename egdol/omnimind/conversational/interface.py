@@ -104,6 +104,10 @@ class ConversationalInterface:
             context = self.context_resolver.resolve_intent_and_context(message, self.current_session.active_personality)
             self.logger.info(f"Resolved context: {context.reasoning_type} (confidence: {context.confidence})")
             
+            # Step 1.5: Evolve conversation phase
+            new_phase = self.current_session.evolve_phase(message)
+            self.logger.info(f"Phase evolved to: {new_phase}")
+            
             # Step 2: Handle personality switch
             if context.intent_type == 'PERSONALITY_SWITCH':
                 return self._handle_personality_switch_stabilized(message, context)
@@ -345,6 +349,25 @@ class ConversationalInterface:
         
         return None
     
+    def _extract_remaining_message(self, message: str, personality_name: str) -> str:
+        """Extract the remaining message after personality switch."""
+        # Look for patterns like "Switch to Strategos. What is the optimal strategy?"
+        import re
+        
+        # Pattern: "Switch to [Personality]. [Question]"
+        pattern = rf"switch to {personality_name.lower()}\.\s*(.+)"
+        match = re.search(pattern, message.lower())
+        if match:
+            return match.group(1).strip()
+        
+        # Pattern: "Switch to [Personality] [Question]"
+        pattern = rf"switch to {personality_name.lower()}\s+(.+)"
+        match = re.search(pattern, message.lower())
+        if match:
+            return match.group(1).strip()
+        
+        return ""
+    
     def _attempt_auto_fix(self, message: str, error: str) -> Dict[str, Any]:
         """Attempt to auto-fix the error."""
         self.logger.info(f"Attempting auto-fix for error: {error}")
@@ -393,16 +416,25 @@ class ConversationalInterface:
         if self.personality_framework.switch_personality(personality_name):
             self.current_session.switch_personality(personality_name)
             personality = self.personality_framework.get_personality(personality_name)
-            response = self.response_generator.generate_personality_switch_response(
-                self.current_session.active_personality, personality_name
-            )
             
-            return {
-                'success': True,
-                'response': response,
-                'personality': personality_name,
-                'personality_info': personality.to_dict() if personality else None
-            }
+            # Check if there's a question after the personality switch
+            remaining_message = self._extract_remaining_message(message, personality_name)
+            if remaining_message and len(remaining_message.strip()) > 10:  # If there's a substantial question
+                # Process the remaining question with the new personality
+                self.logger.info(f"Processing remaining question: {remaining_message}")
+                return self.process_message(remaining_message)
+            else:
+                # Just return the personality switch response
+                response = self.response_generator.generate_personality_switch_response(
+                    self.current_session.active_personality, personality_name
+                )
+                
+                return {
+                    'success': True,
+                    'response': response,
+                    'personality': personality_name,
+                    'personality_info': personality.to_dict() if personality else None
+                }
         else:
             return {
                 'success': False,

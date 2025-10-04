@@ -159,6 +159,12 @@ class ConversationState:
         """Evolve conversation phase based on input patterns."""
         input_lower = user_input.lower()
         
+        # If we're in GREETING phase and user asks a substantive question, move to EXPLORATION
+        if self.current_phase == ConversationPhase.GREETING:
+            if any(word in input_lower for word in ['what', 'how', 'why', 'when', 'where', 'which', 'who']):
+                self.current_phase = ConversationPhase.EXPLORATION
+                return ConversationPhase.EXPLORATION
+        
         # Exploration phase (check first to avoid conflicts)
         if any(word in input_lower for word in ['explore', 'discover', 'learn', 'understand']):
             self.current_phase = ConversationPhase.EXPLORATION

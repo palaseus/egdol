@@ -140,19 +140,15 @@ class ReasoningNormalizer:
     
     def _determine_fallback_requirement(self, context: ReasoningContext) -> bool:
         """Determine if fallback reasoning is required."""
-        # Low confidence requires fallback
-        if context.confidence < 0.5:
+        # Only use fallback for very low confidence
+        if context.confidence < 0.2:
             return True
         
-        # Basic reasoning with simple inputs
-        if context.reasoning_type == 'basic_reasoning' and context.intent_type in ['QUESTION', 'REQUEST']:
+        # Only use fallback for very basic reasoning with simple inputs
+        if context.reasoning_type == 'basic_reasoning' and context.intent_type in ['GREETING', 'CLOSURE']:
             return True
         
-        # Missing critical information
-        if not context.entities and context.intent_type in ['QUESTION', 'COMMAND']:
-            return True
-        
-        # Explicit fallback requirement
+        # Only use fallback if explicitly required
         if context.metadata.get('fallback_required', False):
             return True
         

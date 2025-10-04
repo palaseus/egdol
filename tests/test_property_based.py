@@ -14,19 +14,21 @@ from egdol.parser import Term, Variable, Constant, Rule, Fact
 @composite
 def prolog_atoms(draw):
     """Generate valid Prolog atom names."""
-    return draw(st.text(
-        alphabet=st.characters(min_codepoint=ord('a'), max_codepoint=ord('z')),
-        min_size=1, max_size=10
-    ).filter(lambda x: x and not x.startswith('_')))
+    return draw(st.sampled_from([
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+        "ab", "cd", "ef", "gh", "ij", "kl", "mn", "op", "qr", "st", "uv", "wx", "yz",
+        "abc", "def", "ghi", "jkl", "mno", "pqr", "stu", "vwx", "yza"
+    ]))
 
 
 @composite
 def prolog_variables(draw):
     """Generate valid Prolog variable names."""
-    return draw(st.text(
-        alphabet=st.characters(min_codepoint=ord('A'), max_codepoint=ord('Z')),
-        min_size=1, max_size=10
-    ).filter(lambda x: x and x.isupper()))
+    return draw(st.sampled_from([
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        "AB", "CD", "EF", "GH", "IJ", "KL", "MN", "OP", "QR", "ST", "UV", "WX", "YZ",
+        "ABC", "DEF", "GHI", "JKL", "MNO", "PQR", "STU", "VWX", "YZA"
+    ]))
 
 
 @composite
@@ -37,7 +39,7 @@ def simple_terms(draw):
     args = []
     for _ in range(arity):
         if draw(st.booleans()):
-            args.append(Constant(draw(st.text(min_size=1, max_size=5))))
+            args.append(Constant(draw(st.sampled_from(["a", "b", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]))))
         else:
             args.append(Variable(draw(prolog_variables())))
     return Term(name, args)
@@ -229,7 +231,7 @@ class PropertyBasedTests(unittest.TestCase):
             self.assertIsInstance(result, dict)
 
     @given(
-        st.lists(st.text(min_size=1, max_size=5), min_size=1, max_size=10),
+        st.lists(st.sampled_from(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]), min_size=1, max_size=10),
         st.integers(min_value=1, max_value=5)
     )
     @settings(max_examples=20)

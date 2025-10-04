@@ -26,7 +26,7 @@ def test_basic_functionality():
         print(f"   Personality: {response['personality']}")
     except Exception as e:
         print(f"   ❌ Basic chat failed: {e}")
-        return False
+        assert False, f"Basic chat failed: {e}"
     print()
     
     # Test 2: Personality switching
@@ -41,7 +41,7 @@ def test_basic_functionality():
         print(f"   Current personality: {chat.get_current_personality()}")
     except Exception as e:
         print(f"   ❌ Personality switching failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
     # Test 3: Quick chat functions
@@ -52,7 +52,7 @@ def test_basic_functionality():
         print(f"   Response: {response[:50]}...")
     except Exception as e:
         print(f"   ❌ Quick chat failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
     # Test 4: Conversation summary
@@ -63,7 +63,7 @@ def test_basic_functionality():
         print(f"   Total turns: {summary.get('total_turns', 0)}")
     except Exception as e:
         print(f"   ❌ Conversation summary failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
     # Test 5: End conversation
@@ -73,10 +73,10 @@ def test_basic_functionality():
         print(f"   ✅ Conversation ending works: {end_result['success']}")
     except Exception as e:
         print(f"   ❌ Conversation ending failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
-    return True
+    # Test completed successfully
 
 
 def test_personality_specific():
@@ -95,7 +95,7 @@ def test_personality_specific():
         print(f"   Response: {response[:50]}...")
     except Exception as e:
         print(f"   ❌ Strategos failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
     # Test Archivist
@@ -106,7 +106,7 @@ def test_personality_specific():
         print(f"   Response: {response[:50]}...")
     except Exception as e:
         print(f"   ❌ Archivist failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
     # Test Lawmaker
@@ -117,7 +117,7 @@ def test_personality_specific():
         print(f"   Response: {response[:50]}...")
     except Exception as e:
         print(f"   ❌ Lawmaker failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
     # Test Oracle
@@ -128,10 +128,10 @@ def test_personality_specific():
         print(f"   Response: {response[:50]}...")
     except Exception as e:
         print(f"   ❌ Oracle failed: {e}")
-        return False
+        assert False, "Test failed"
     print()
     
-    return True
+    # Test completed successfully
 
 
 def main():
@@ -168,16 +168,16 @@ def main():
                 print("   python -m egdol.omnimind.conversational.cli")
             else:
                 print("❌ Personality-specific tests failed!")
-                return False
+                assert False, "Test failed"
         else:
             print("❌ Basic functionality tests failed!")
-            return False
+            assert False, "Test failed"
             
     except Exception as e:
         print(f"❌ Test failed with error: {e}")
         import traceback
         traceback.print_exc()
-        return False
+        assert False, "Test failed"
     
     finally:
         # Cleanup
@@ -187,7 +187,7 @@ def main():
         except:
             pass
     
-    return True
+    # Test completed successfully
 
 
 if __name__ == '__main__':

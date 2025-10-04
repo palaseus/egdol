@@ -343,8 +343,9 @@ class DiscoveryAnalyzer:
     
     def _analyze_discovery_relationships(self, discovery: Discovery):
         """Analyze relationships between discoveries."""
-        # Find related discoveries
-        for other_id, other_discovery in self.discoveries.items():
+        # Find related discoveries - create a copy to avoid modification during iteration
+        discoveries_copy = dict(self.discoveries)
+        for other_id, other_discovery in discoveries_copy.items():
             if other_id == discovery.id:
                 continue
             
